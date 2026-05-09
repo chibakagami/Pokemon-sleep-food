@@ -4,9 +4,9 @@ import recipesData from '../data/recipes.json'
 
 const CATEGORIES = [
   { id: 'all',     label: '全部' },
-  { id: 'curry',   label: '🍛 咖哩' },
+  { id: 'curry',   label: '🍛 咖哩・濃湯' },
   { id: 'salad',   label: '🥗 沙拉' },
-  { id: 'dessert', label: '🍰 甜點' },
+  { id: 'dessert', label: '🍡 點心・飲品' },
 ]
 
 const SORT_OPTIONS = [

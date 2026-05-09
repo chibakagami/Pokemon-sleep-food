@@ -2,7 +2,7 @@ import ingredientsData from '../data/ingredients.json'
 
 const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
 
-const CATEGORY_ICON = { curry: '🍛', salad: '🥗', dessert: '🍰' }
+const CATEGORY_ICON = { curry: '🍛', salad: '🥗', dessert: '🍡' }
 const MAX_LEVEL = 6
 
 export default function RecipeCard({ recipe, inventory, level, onLevelChange }) {
