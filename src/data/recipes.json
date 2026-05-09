@@ -1,0 +1,338 @@
+[
+  {
+    "id": "mild_honey_curry",
+    "name": "蜂蜜咖哩",
+    "category": "curry",
+    "ingredients": { "honey": 8, "apple": 4 }
+  },
+  {
+    "id": "veggie_curry",
+    "name": "蔬菜咖哩",
+    "category": "curry",
+    "ingredients": { "tomato": 6, "apple": 4 }
+  },
+  {
+    "id": "drought_katsu_curry",
+    "name": "乾咖哩",
+    "category": "curry",
+    "ingredients": { "herb": 5, "ginger": 3 }
+  },
+  {
+    "id": "ninja_curry",
+    "name": "忍者咖哩",
+    "category": "curry",
+    "ingredients": { "leek": 8, "ginger": 5 }
+  },
+  {
+    "id": "warm_cocoa_curry",
+    "name": "椰香可可咖哩",
+    "category": "curry",
+    "ingredients": { "cacao": 8, "milk": 8 }
+  },
+  {
+    "id": "simple_chowder",
+    "name": "鮮奶濃湯",
+    "category": "curry",
+    "ingredients": { "milk": 10, "potato": 5 }
+  },
+  {
+    "id": "beanburger_curry",
+    "name": "豆腐漢堡咖哩",
+    "category": "curry",
+    "ingredients": { "soybean": 10, "egg": 5 }
+  },
+  {
+    "id": "summer_festival_curry",
+    "name": "夏日祭典咖哩",
+    "category": "curry",
+    "ingredients": { "tomato": 7, "egg": 5, "oil": 4 }
+  },
+  {
+    "id": "hearty_cheeseburger_curry",
+    "name": "起司漢堡咖哩",
+    "category": "curry",
+    "ingredients": { "milk": 8, "egg": 6, "butter": 4 }
+  },
+  {
+    "id": "spicy_leek_curry",
+    "name": "辛辣韭菜咖哩",
+    "category": "curry",
+    "ingredients": { "leek": 9, "herb": 5, "oil": 4 }
+  },
+  {
+    "id": "soft_potato_chowder",
+    "name": "鬆軟馬鈴薯濃湯",
+    "category": "curry",
+    "ingredients": { "potato": 10, "milk": 6, "butter": 4 }
+  },
+  {
+    "id": "bulk_up_bean_curry",
+    "name": "健壯大豆咖哩",
+    "category": "curry",
+    "ingredients": { "soybean": 12, "bone": 6, "milk": 5 }
+  },
+  {
+    "id": "inferno_corn_curry",
+    "name": "烈焰辣玉米咖哩",
+    "category": "curry",
+    "ingredients": { "herb": 9, "potato": 7, "oil": 5 }
+  },
+  {
+    "id": "melting_molten_curry",
+    "name": "融化熔岩咖哩",
+    "category": "curry",
+    "ingredients": { "cacao": 9, "honey": 6, "butter": 5 }
+  },
+  {
+    "id": "dream_eater_butter_curry",
+    "name": "夢遊奶油咖哩",
+    "category": "curry",
+    "ingredients": { "butter": 10, "milk": 8, "tail": 5 }
+  },
+  {
+    "id": "perfect_honey_curry",
+    "name": "完美蜂蜜咖哩",
+    "category": "curry",
+    "ingredients": { "honey": 13, "apple": 8, "egg": 6 }
+  },
+  {
+    "id": "ninja_curry_supreme",
+    "name": "忍者咖哩極品",
+    "category": "curry",
+    "ingredients": { "leek": 14, "ginger": 9, "herb": 6 }
+  },
+  {
+    "id": "hero_curry",
+    "name": "英雄咖哩",
+    "category": "curry",
+    "ingredients": { "bone": 15, "tail": 10, "soybean": 8 }
+  },
+  {
+    "id": "snoozy_tomato_salad",
+    "name": "睡眠番茄沙拉",
+    "category": "salad",
+    "ingredients": { "tomato": 8, "honey": 4 }
+  },
+  {
+    "id": "fancy_apple_salad",
+    "name": "特選蘋果沙拉",
+    "category": "salad",
+    "ingredients": { "apple": 8, "honey": 4 }
+  },
+  {
+    "id": "warming_ginger_salad",
+    "name": "暖薑沙拉",
+    "category": "salad",
+    "ingredients": { "ginger": 8, "apple": 4 }
+  },
+  {
+    "id": "bean_ham_salad",
+    "name": "大豆火腿沙拉",
+    "category": "salad",
+    "ingredients": { "soybean": 9, "egg": 5 }
+  },
+  {
+    "id": "greengrass_salad",
+    "name": "翠綠沙拉",
+    "category": "salad",
+    "ingredients": { "leek": 8, "oil": 4 }
+  },
+  {
+    "id": "tasty_mushroom_salad",
+    "name": "嬌嫩蘑菇沙拉",
+    "category": "salad",
+    "ingredients": { "mushroom": 10, "butter": 4 }
+  },
+  {
+    "id": "waterweed_salad",
+    "name": "水草沙拉",
+    "category": "salad",
+    "ingredients": { "mushroom": 9, "apple": 5, "honey": 4 }
+  },
+  {
+    "id": "spicy_herb_salad",
+    "name": "香辣草藥沙拉",
+    "category": "salad",
+    "ingredients": { "herb": 10, "tomato": 5, "oil": 5 }
+  },
+  {
+    "id": "moomoo_farm_salad",
+    "name": "牧場鮮奶沙拉",
+    "category": "salad",
+    "ingredients": { "milk": 10, "egg": 7, "apple": 5 }
+  },
+  {
+    "id": "slowpoke_tail_pepper_salad",
+    "name": "呆呆獸尾巴沙拉",
+    "category": "salad",
+    "ingredients": { "tail": 9, "herb": 6, "oil": 5 }
+  },
+  {
+    "id": "gluttony_potato_salad",
+    "name": "滿足馬鈴薯沙拉",
+    "category": "salad",
+    "ingredients": { "potato": 11, "egg": 8, "butter": 7 }
+  },
+  {
+    "id": "egg_bomb_salad",
+    "name": "炸彈蛋沙拉",
+    "category": "salad",
+    "ingredients": { "egg": 12, "potato": 7, "butter": 5 }
+  },
+  {
+    "id": "contrary_chocolate_meat_salad",
+    "name": "可可肉類沙拉",
+    "category": "salad",
+    "ingredients": { "cacao": 10, "bone": 7, "tail": 6 }
+  },
+  {
+    "id": "superpower_extreme_salad",
+    "name": "超力量極限沙拉",
+    "category": "salad",
+    "ingredients": { "bone": 10, "egg": 8, "butter": 6 }
+  },
+  {
+    "id": "inferno_tail_salad",
+    "name": "烈焰尾巴沙拉",
+    "category": "salad",
+    "ingredients": { "tail": 10, "herb": 8, "ginger": 6 }
+  },
+  {
+    "id": "fiery_herb_tomato_salad",
+    "name": "番茄火焰草沙拉",
+    "category": "salad",
+    "ingredients": { "tomato": 12, "herb": 7, "oil": 5 }
+  },
+  {
+    "id": "ninja_salad",
+    "name": "忍者沙拉",
+    "category": "salad",
+    "ingredients": { "leek": 13, "ginger": 8, "mushroom": 7 }
+  },
+  {
+    "id": "slowpoke_tail_olive_salad",
+    "name": "尾巴橄欖油沙拉",
+    "category": "salad",
+    "ingredients": { "tail": 14, "oil": 9, "herb": 7 }
+  },
+  {
+    "id": "greengrass_extreme_salad",
+    "name": "極品翠綠沙拉",
+    "category": "salad",
+    "ingredients": { "soybean": 15, "leek": 10, "oil": 7 }
+  },
+  {
+    "id": "warm_cookie",
+    "name": "暖心餅乾",
+    "category": "dessert",
+    "ingredients": { "butter": 9, "honey": 5, "milk": 4 }
+  },
+  {
+    "id": "mixed_juice",
+    "name": "綜合果汁",
+    "category": "dessert",
+    "ingredients": { "apple": 8, "honey": 4, "milk": 3 }
+  },
+  {
+    "id": "fancy_apple_juice",
+    "name": "特選蘋果汁",
+    "category": "dessert",
+    "ingredients": { "apple": 10, "honey": 6, "butter": 4 }
+  },
+  {
+    "id": "fluffy_sweet_potatoes",
+    "name": "鬆鬆甜薯",
+    "category": "dessert",
+    "ingredients": { "potato": 10, "butter": 4, "milk": 4 }
+  },
+  {
+    "id": "jigglypuff_treat",
+    "name": "胖丁甜蜜點心",
+    "category": "dessert",
+    "ingredients": { "milk": 11, "egg": 8, "honey": 6 }
+  },
+  {
+    "id": "hustle_cookie",
+    "name": "衝勁餅乾",
+    "category": "dessert",
+    "ingredients": { "ginger": 8, "butter": 5, "honey": 4 }
+  },
+  {
+    "id": "lovely_kiss_smoothie",
+    "name": "甜蜜輕吻冰沙",
+    "category": "dessert",
+    "ingredients": { "apple": 11, "honey": 8, "butter": 6 }
+  },
+  {
+    "id": "chocolate_cake",
+    "name": "巧克力蛋糕",
+    "category": "dessert",
+    "ingredients": { "cacao": 8, "milk": 6, "butter": 4 }
+  },
+  {
+    "id": "neroli_tea",
+    "name": "蘑菇奶油甜派",
+    "category": "dessert",
+    "ingredients": { "mushroom": 11, "honey": 7, "milk": 7 }
+  },
+  {
+    "id": "heartening_gold_cookie",
+    "name": "心意金色餅乾",
+    "category": "dessert",
+    "ingredients": { "cacao": 9, "butter": 7, "milk": 5 }
+  },
+  {
+    "id": "cloud_nine_soda",
+    "name": "飄飄氣泡飲",
+    "category": "dessert",
+    "ingredients": { "cacao": 12, "honey": 10, "milk": 8 }
+  },
+  {
+    "id": "greengrass_smoothie",
+    "name": "翠綠冰沙",
+    "category": "dessert",
+    "ingredients": { "soybean": 11, "apple": 8, "milk": 6 }
+  },
+  {
+    "id": "ember_ginger_tea",
+    "name": "火焰薑茶",
+    "category": "dessert",
+    "ingredients": { "ginger": 11, "honey": 8, "cacao": 5 }
+  },
+  {
+    "id": "moomoo_ice_cream",
+    "name": "暖暖牛奶冰淇淋",
+    "category": "dessert",
+    "ingredients": { "milk": 13, "butter": 8, "honey": 7 }
+  },
+  {
+    "id": "stalwart_vegetable_juice",
+    "name": "活力蔬菜汁",
+    "category": "dessert",
+    "ingredients": { "soybean": 14, "apple": 8, "honey": 6 }
+  },
+  {
+    "id": "slowpoke_tail_sweets",
+    "name": "尾巴甜點",
+    "category": "dessert",
+    "ingredients": { "tail": 10, "apple": 7, "honey": 6 }
+  },
+  {
+    "id": "potato_soft_serve",
+    "name": "馬鈴薯霜淇淋",
+    "category": "dessert",
+    "ingredients": { "potato": 12, "butter": 7, "milk": 6 }
+  },
+  {
+    "id": "warm_moomoo_milk",
+    "name": "香醇熱牛奶",
+    "category": "dessert",
+    "ingredients": { "milk": 15, "honey": 10, "butter": 8 }
+  },
+  {
+    "id": "super_fancy_apple",
+    "name": "超特選蘋果甜點",
+    "category": "dessert",
+    "ingredients": { "apple": 16, "honey": 11, "butter": 9 }
+  }
+]
