@@ -1,0 +1,46 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --green-dark:   #2d7a4f;
+  --green-mid:    #3d9e69;
+  --green-light:  #e8f5ee;
+  --cream:        #faf7f0;
+  --card-bg:      #ffffff;
+  --text-main:    #2c2c2c;
+  --text-muted:   #888;
+  --border:       #e0e0e0;
+  --feasible:     #2d7a4f;
+  --infeasible:   #b0b0b0;
+  --red-lack:     #e05050;
+  --shadow:       0 2px 8px rgba(0,0,0,0.08);
+}
+
+html, body {
+  height: 100%;
+  background: var(--cream);
+  color: var(--text-main);
+  font-family: -apple-system, 'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  font-size: 15px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}

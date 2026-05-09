@@ -1,0 +1,18 @@
+[
+  { "id": "apple",    "name": "特選蘋果",   "emoji": "🍎" },
+  { "id": "milk",     "name": "醇厚牛奶",   "emoji": "🥛" },
+  { "id": "cacao",    "name": "香濃可可豆", "emoji": "🍫" },
+  { "id": "mushroom", "name": "嬌嫩蘑菇",   "emoji": "🍄" },
+  { "id": "oil",      "name": "純正橄欖油", "emoji": "🫙" },
+  { "id": "bone",     "name": "大骨頭",     "emoji": "🦴" },
+  { "id": "ginger",   "name": "暖心薑",     "emoji": "🫚" },
+  { "id": "leek",     "name": "長長韭菜",   "emoji": "🥬" },
+  { "id": "soybean",  "name": "翠綠大豆",   "emoji": "🫘" },
+  { "id": "tomato",   "name": "睡眠番茄",   "emoji": "🍅" },
+  { "id": "egg",      "name": "特選雞蛋",   "emoji": "🥚" },
+  { "id": "honey",    "name": "甜蜜蜂蜜",   "emoji": "🍯" },
+  { "id": "herb",     "name": "火焰草",     "emoji": "🌿" },
+  { "id": "tail",     "name": "呆呆獸尾巴", "emoji": "🐟" },
+  { "id": "butter",   "name": "軟滑奶油",   "emoji": "🧈" },
+  { "id": "potato",   "name": "鬆鬆馬鈴薯", "emoji": "🥔" }
+]
