@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/Pokemon-sleep-food/sw.js', { scope: '/Pokemon-sleep-food/' })})}
