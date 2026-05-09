@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import ingredientsData from '../data/ingredients.json'
 
 export default function IngredientsPanel({ inventory, onUpdate }) {
+  const [imgErrors, setImgErrors] = useState({})
+
   const handleInput = (id, raw) => {
     const val = Math.max(0, Math.min(999, parseInt(raw, 10) || 0))
     onUpdate(id, val)
@@ -14,7 +17,16 @@ export default function IngredientsPanel({ inventory, onUpdate }) {
           const count = inventory[ing.id] ?? 0
           return (
             <div key={ing.id} className="ingredient-card">
-              <div className="ingredient-emoji">{ing.emoji}</div>
+              {ing.image && !imgErrors[ing.id] ? (
+                <img
+                  src={ing.image}
+                  alt={ing.name}
+                  className="ingredient-img"
+                  onError={() => setImgErrors(prev => ({ ...prev, [ing.id]: true }))}
+                />
+              ) : (
+                <div className="ingredient-emoji">{ing.emoji}</div>
+              )}
               <div className="ingredient-name">{ing.name}</div>
               <div className="ingredient-controls">
                 <button
