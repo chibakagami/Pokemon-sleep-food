@@ -282,6 +282,12 @@
   line-height: 1.2;
 }
 
+.header-badges {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
 .feasible-badge {
   background: var(--green-dark);
   color: #fff;
@@ -290,7 +296,6 @@
   padding: 2px 8px;
   border-radius: 10px;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .recipe-ingredients {
@@ -331,49 +336,113 @@
   margin: 0 2px;
 }
 
-/* ── Recipe footer (level) ────────────────────────── */
+/* ── Recipe footer (level + production) ───────────────── */
 .recipe-footer {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 8px;
   padding-top: 8px;
   border-top: 1px solid var(--border);
 }
 
-.level-label {
-  font-size: 0.8rem;
+.level-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.footer-lbl {
+  font-size: 0.78rem;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.level-dots {
-  display: flex;
-  gap: 5px;
-  flex: 1;
+.footer-sep {
+  color: var(--border);
+  font-size: 0.9rem;
+  padding: 0 2px;
 }
 
-.level-dot {
-  width: 18px;
-  height: 18px;
+.step-btn {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  border: 2px solid var(--border);
-  background: #fff;
-  transition: background 0.1s, border-color 0.1s;
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.1s;
   padding: 0;
+}
+
+.step-btn:active {
+  background: #c8e8d5;
+}
+
+.lv-input {
+  width: 42px;
+  height: 26px;
+  text-align: center;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  background: #fff;
+  -moz-appearance: textfield;
   flex-shrink: 0;
 }
 
-.level-dot.filled {
-  background: var(--green-mid);
-  border-color: var(--green-mid);
+.lv-input::-webkit-outer-spin-button,
+.lv-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
-.level-text {
+.achieved-badge {
+  background: #e8960e;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.production-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cook-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.cook-btn {
+  padding: 5px 14px;
+  border-radius: 16px;
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--green-dark);
-  min-width: 30px;
-  text-align: right;
+  transition: background 0.15s, opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.cook-btn.cook-ready {
+  background: var(--green-dark);
+  color: #fff;
+}
+
+.cook-btn.cook-dim {
+  background: #e0e0e0;
+  color: var(--text-muted);
 }
 
 /* ── Game asset images ────────────────────────────── */

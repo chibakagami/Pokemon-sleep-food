@@ -4,12 +4,19 @@ import ingredientsData from '../data/ingredients.json'
 const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
 
 const CATEGORY_ICON = { curry: '🍛', salad: '🥗', dessert: '🍡' }
-const MAX_LEVEL = 6
+const MAX_LEVEL = 65
 
-export default function RecipeCard({ recipe, inventory, level, onLevelChange }) {
+export default function RecipeCard({
+  recipe, inventory,
+  level, target, productionCount,
+  onLevelChange, onTargetChange, onCook,
+}) {
   const { name, category, ingredients, feasible, image } = recipe
   const [recipeImgErr, setRecipeImgErr] = useState(false)
   const [ingImgErrors, setIngImgErrors] = useState({})
+
+  const clamp = v => Math.min(MAX_LEVEL, Math.max(0, v))
+  const achieved = target > 0 && level >= target
 
   return (
     <div className={`recipe-card ${feasible ? 'feasible' : 'infeasible'}`}>
@@ -25,7 +32,10 @@ export default function RecipeCard({ recipe, inventory, level, onLevelChange }) 
           <span className="recipe-category-icon">{CATEGORY_ICON[category]}</span>
         )}
         <span className="recipe-name">{name}</span>
-        {feasible && <span className="feasible-badge">✓ 可做</span>}
+        <div className="header-badges">
+          {feasible && <span className="feasible-badge">✓ 可做</span>}
+          {achieved && <span className="achieved-badge">★ 達標</span>}
+        </div>
       </div>
 
       <div className="recipe-ingredients">
@@ -55,18 +65,45 @@ export default function RecipeCard({ recipe, inventory, level, onLevelChange }) 
       </div>
 
       <div className="recipe-footer">
-        <label className="level-label">等級</label>
-        <div className="level-dots">
-          {Array.from({ length: MAX_LEVEL }, (_, i) => (
-            <button
-              key={i}
-              className={`level-dot ${i < level ? 'filled' : ''}`}
-              onClick={() => onLevelChange(i + 1 === level ? i : i + 1)}
-              aria-label={`設為 Lv.${i + 1}`}
-            />
-          ))}
+        <div className="level-row">
+          <span className="footer-lbl">Lv.</span>
+          <button
+            className="step-btn"
+            onClick={() => onLevelChange(clamp(level - 1))}
+            aria-label="等級 -1"
+          >−</button>
+          <input
+            className="lv-input"
+            type="number"
+            min="0"
+            max={MAX_LEVEL}
+            value={level}
+            onChange={e => onLevelChange(clamp(parseInt(e.target.value) || 0))}
+          />
+          <button
+            className="step-btn"
+            onClick={() => onLevelChange(clamp(level + 1))}
+            aria-label="等級 +1"
+          >+</button>
+          <span className="footer-sep">·</span>
+          <span className="footer-lbl">目標</span>
+          <input
+            className="lv-input"
+            type="number"
+            min="0"
+            max={MAX_LEVEL}
+            value={target || ''}
+            placeholder="—"
+            onChange={e => onTargetChange(clamp(parseInt(e.target.value) || 0))}
+          />
         </div>
-        <span className="level-text">Lv.{level}</span>
+        <div className="production-row">
+          <span className="cook-count">製作 {productionCount} 次</span>
+          <button
+            className={`cook-btn ${feasible ? 'cook-ready' : 'cook-dim'}`}
+            onClick={onCook}
+          >已製作 +1</button>
+        </div>
       </div>
     </div>
   )

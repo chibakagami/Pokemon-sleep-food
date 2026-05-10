@@ -11,9 +11,22 @@ export default function App() {
   const [tab, setTab] = useState('recipes')
   const [inventory, setInventory] = useStorage('psf_inventory', initialInventory)
   const [recipeLevels, setRecipeLevels] = useStorage('psf_levels', {})
+  const [recipeTargets, setRecipeTargets] = useStorage('psf_targets', {})
+  const [productionCounts, setProductionCounts] = useStorage('psf_production', {})
 
   const updateIngredient = (id, value) => {
     setInventory(prev => ({ ...prev, [id]: Math.max(0, Math.min(999, value)) }))
+  }
+
+  const handleCook = (recipe) => {
+    setProductionCounts(prev => ({ ...prev, [recipe.id]: (prev[recipe.id] ?? 0) + 1 }))
+    setInventory(prev => {
+      const next = { ...prev }
+      Object.entries(recipe.ingredients).forEach(([id, req]) => {
+        next[id] = Math.max(0, (next[id] ?? 0) - req)
+      })
+      return next
+    })
   }
 
   return (
@@ -39,7 +52,7 @@ export default function App() {
           className={`tab-btn ${tab === 'ingredients' ? 'active' : ''}`}
           onClick={() => setTab('ingredients')}
         >
-          🧺 食材
+          🧵 食材
         </button>
       </nav>
 
@@ -51,6 +64,10 @@ export default function App() {
             inventory={inventory}
             recipeLevels={recipeLevels}
             setRecipeLevels={setRecipeLevels}
+            recipeTargets={recipeTargets}
+            setRecipeTargets={setRecipeTargets}
+            productionCounts={productionCounts}
+            onCook={handleCook}
           />
         )}
       </main>

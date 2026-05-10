@@ -4,15 +4,16 @@ import recipesData from '../data/recipes.json'
 
 const CATEGORIES = [
   { id: 'all',     label: '全部' },
-  { id: 'curry',   label: '🍛 咖哩・濃湯' },
+  { id: 'curry',   label: '🍛 咊哩・濃湯' },
   { id: 'salad',   label: '🥗 沙拉' },
   { id: 'dessert', label: '🍡 點心・飲品' },
 ]
 
 const SORT_OPTIONS = [
-  { id: 'feasible', label: '可製作優先' },
-  { id: 'name',     label: '名稱' },
-  { id: 'level',    label: '等級（高→低）' },
+  { id: 'feasible',    label: '可製作優先' },
+  { id: 'name',        label: '名稱' },
+  { id: 'level',       label: '等級（高→低）' },
+  { id: 'ingredients', label: '食材需求量（多→少）' },
 ]
 
 function canMake(recipe, inventory) {
@@ -21,13 +22,28 @@ function canMake(recipe, inventory) {
   )
 }
 
-export default function RecipeList({ inventory, recipeLevels, setRecipeLevels }) {
+function ingTotal(recipe) {
+  return Object.values(recipe.ingredients).reduce((s, v) => s + v, 0)
+}
+
+export default function RecipeList({
+  inventory,
+  recipeLevels, setRecipeLevels,
+  recipeTargets, setRecipeTargets,
+  productionCounts, onCook,
+}) {
   const [category, setCategory] = useState('all')
   const [sortBy, setSortBy] = useState('feasible')
 
   const processed = recipesData
     .filter(r => category === 'all' || r.category === category)
-    .map(r => ({ ...r, feasible: canMake(r, inventory), level: recipeLevels[r.id] ?? 1 }))
+    .map(r => ({
+      ...r,
+      feasible: canMake(r, inventory),
+      level: recipeLevels[r.id] ?? 0,
+      target: recipeTargets[r.id] ?? 0,
+      productionCount: productionCounts[r.id] ?? 0,
+    }))
     .sort((a, b) => {
       if (sortBy === 'feasible') {
         if (a.feasible !== b.feasible) return b.feasible - a.feasible
@@ -35,6 +51,11 @@ export default function RecipeList({ inventory, recipeLevels, setRecipeLevels })
       }
       if (sortBy === 'level') {
         if (a.level !== b.level) return b.level - a.level
+        return a.name.localeCompare(b.name, 'zh-TW')
+      }
+      if (sortBy === 'ingredients') {
+        const diff = ingTotal(b) - ingTotal(a)
+        if (diff !== 0) return diff
         return a.name.localeCompare(b.name, 'zh-TW')
       }
       return a.name.localeCompare(b.name, 'zh-TW')
@@ -78,9 +99,11 @@ export default function RecipeList({ inventory, recipeLevels, setRecipeLevels })
             recipe={recipe}
             inventory={inventory}
             level={recipe.level}
-            onLevelChange={level =>
-              setRecipeLevels(prev => ({ ...prev, [recipe.id]: level }))
-            }
+            target={recipe.target}
+            productionCount={recipe.productionCount}
+            onLevelChange={lv => setRecipeLevels(prev => ({ ...prev, [recipe.id]: lv }))}
+            onTargetChange={tg => setRecipeTargets(prev => ({ ...prev, [recipe.id]: tg }))}
+            onCook={() => onCook(recipe)}
           />
         ))}
       </div>
