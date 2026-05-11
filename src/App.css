@@ -1,3 +1,139 @@
+/* ── Splash screen ────────────────────────────────── */
+.splash {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+.splash-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(170deg, #a8d8f0 0%, #6ab8e8 35%, #3a9bd5 70%, #2575c4 100%);
+  z-index: 0;
+}
+
+.splash-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  color: #fff;
+  opacity: 0.7;
+  animation: twinkle 2.5s infinite alternate;
+}
+.star.s1 { top: 8%;  left: 12%; font-size: 1.1rem; animation-delay: 0s; }
+.star.s2 { top: 15%; right: 10%; font-size: 0.8rem; animation-delay: 0.4s; }
+.star.s3 { top: 30%; left: 8%;  font-size: 1.4rem; animation-delay: 0.8s; }
+.star.s4 { top: 20%; right: 20%; font-size: 1rem; animation-delay: 1.2s; }
+.star.s5 { top: 5%;  left: 55%; font-size: 0.9rem; animation-delay: 0.6s; }
+.star.s6 { top: 40%; right: 6%;  font-size: 0.7rem; animation-delay: 1.5s; }
+
+@keyframes twinkle {
+  from { opacity: 0.4; transform: scale(0.9); }
+  to   { opacity: 1;   transform: scale(1.15); }
+}
+
+.splash-logo {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.logo-pokemon {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.logo-sleep {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.3);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  font-style: italic;
+}
+
+.logo-sub {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+
+.splash-snorlax {
+  position: relative;
+  z-index: 2;
+  width: min(260px, 65vw);
+  filter: drop-shadow(0 12px 32px rgba(0,0,60,0.35));
+  animation: float 3.5s ease-in-out infinite;
+}
+
+.snorlax-svg {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.splash-btn {
+  position: relative;
+  z-index: 2;
+  margin-top: 28px;
+  padding: 14px 48px;
+  background: rgba(255,255,255,0.95);
+  color: #2575c4;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border-radius: 32px;
+  letter-spacing: 0.08em;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.splash-btn:hover, .splash-btn:active {
+  transform: scale(1.04);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
+  50%       { box-shadow: 0 4px 28px rgba(37,117,196,0.45); }
+}
+
+.splash-version {
+  position: absolute;
+  bottom: 16px;
+  right: 18px;
+  z-index: 3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.04em;
+}
+
 /* ── Layout ───────────────────────────────────────── */
 .app {
   display: flex;
@@ -275,11 +411,41 @@
   flex-shrink: 0;
 }
 
+.recipe-title-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.recipe-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
 .recipe-name {
   font-size: 1rem;
   font-weight: 700;
-  flex: 1;
   line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+}
+
+.recipe-total-ing {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.recipe-base-energy {
+  font-size: 0.75rem;
+  color: #e8960e;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .header-badges {

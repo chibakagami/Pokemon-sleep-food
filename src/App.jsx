@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import IngredientsPanel from './components/IngredientsPanel'
 import RecipeList from './components/RecipeList'
+import SplashScreen from './components/SplashScreen'
 import { useStorage } from './hooks/useStorage'
 import ingredientsData from './data/ingredients.json'
 import './App.css'
@@ -8,6 +9,7 @@ import './App.css'
 const initialInventory = Object.fromEntries(ingredientsData.map(ing => [ing.id, 0]))
 
 export default function App() {
+  const [started, setStarted] = useState(false)
   const [tab, setTab] = useState('recipes')
   const [inventory, setInventory] = useStorage('psf_inventory', initialInventory)
   const [recipeLevels, setRecipeLevels] = useStorage('psf_levels', {})
@@ -27,6 +29,10 @@ export default function App() {
       })
       return next
     })
+  }
+
+  if (!started) {
+    return <SplashScreen onStart={() => setStarted(true)} />
   }
 
   return (
