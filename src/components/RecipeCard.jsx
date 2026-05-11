@@ -11,12 +11,13 @@ export default function RecipeCard({
   level, target, productionCount,
   onLevelChange, onTargetChange, onCook,
 }) {
-  const { name, category, ingredients, feasible, image } = recipe
+  const { name, category, ingredients, feasible, image, baseEnergy } = recipe
   const [recipeImgErr, setRecipeImgErr] = useState(false)
   const [ingImgErrors, setIngImgErrors] = useState({})
 
   const clamp = v => Math.min(MAX_LEVEL, Math.max(0, v))
   const achieved = target > 0 && level >= target
+  const totalIngredients = Object.values(ingredients).reduce((s, v) => s + v, 0)
 
   return (
     <div className={`recipe-card ${feasible ? 'feasible' : 'infeasible'}`}>
@@ -31,7 +32,15 @@ export default function RecipeCard({
         ) : (
           <span className="recipe-category-icon">{CATEGORY_ICON[category]}</span>
         )}
-        <span className="recipe-name">{name}</span>
+        <div className="recipe-title-block">
+          <div className="recipe-name-row">
+            <span className="recipe-name">{name}</span>
+            <span className="recipe-total-ing" title="總食材數">×{totalIngredients}</span>
+          </div>
+          {baseEnergy != null && (
+            <span className="recipe-base-energy">基本能量 {baseEnergy.toLocaleString()}</span>
+          )}
+        </div>
         <div className="header-badges">
           {feasible && <span className="feasible-badge">✓ 可做</span>}
           {achieved && <span className="achieved-badge">★ 達標</span>}
