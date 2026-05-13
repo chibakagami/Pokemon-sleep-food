@@ -38,7 +38,7 @@ export default function RecipeCard({
             <span className="recipe-total-ing" title="總食材數">×{totalIngredients}</span>
           </div>
           {baseEnergy != null && (
-            <span className="recipe-base-energy">基本能量 {baseEnergy.toLocaleString()}</span>
+            <span className="recipe-base-energy">基礎能量 {baseEnergy.toLocaleString()}</span>
           )}
         </div>
         <div className="header-badges">
