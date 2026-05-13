@@ -4,7 +4,7 @@ import recipesData from '../data/recipes.json'
 
 const CATEGORIES = [
   { id: 'all',     label: '全部' },
-  { id: 'curry',   label: '🍛 咊哩・濃湯' },
+  { id: 'curry',   label: '🍛 咖哩・濃湯' },
   { id: 'salad',   label: '🥗 沙拉' },
   { id: 'dessert', label: '🍡 點心・飲品' },
 ]
@@ -13,7 +13,8 @@ const SORT_OPTIONS = [
   { id: 'feasible',    label: '可製作優先' },
   { id: 'name',        label: '名稱' },
   { id: 'level',       label: '等級（高→低）' },
-  { id: 'ingredients', label: '食材需求量（多→少）' },
+  { id: 'ingredients', label: '食材數量（多→少）' },
+  { id: 'energy',      label: '基礎能量（高→低）' },
 ]
 
 function canMake(recipe, inventory) {
@@ -55,6 +56,11 @@ export default function RecipeList({
       }
       if (sortBy === 'ingredients') {
         const diff = ingTotal(b) - ingTotal(a)
+        if (diff !== 0) return diff
+        return a.name.localeCompare(b.name, 'zh-TW')
+      }
+      if (sortBy === 'energy') {
+        const diff = (b.baseEnergy ?? 0) - (a.baseEnergy ?? 0)
         if (diff !== 0) return diff
         return a.name.localeCompare(b.name, 'zh-TW')
       }

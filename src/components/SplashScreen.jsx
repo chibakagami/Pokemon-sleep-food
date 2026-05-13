@@ -66,7 +66,7 @@ export default function SplashScreen({ onStart }) {
         點擊來開始
       </button>
 
-      <div className="splash-version">V1.00</div>
+      <div className="splash-version">V1.01</div>
     </div>
   )
 }

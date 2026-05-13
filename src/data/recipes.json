@@ -1,7 +1,7 @@
 [
   {
     "id": "mild_honey_curry",
-    "name": "溫和蜂蜜咖哩",
+    "name": "寶貝甜蜜咖哩",
     "category": "curry",
     "baseEnergy": 748,
     "ingredients": { "honey": 7 },
@@ -9,7 +9,7 @@
   },
   {
     "id": "simple_chowder",
-    "name": "簡易濃湯",
+    "name": "單純白醬濃湯",
     "category": "curry",
     "baseEnergy": 814,
     "ingredients": { "milk": 7 },
@@ -25,7 +25,7 @@
   },
   {
     "id": "bean_burger_curry",
-    "name": "豆腸漢堡咖哩",
+    "name": "豆製肉排咖哩",
     "category": "curry",
     "baseEnergy": 856,
     "ingredients": { "sausage": 7 },
@@ -33,7 +33,7 @@
   },
   {
     "id": "solar_tomato_curry",
-    "name": "蔬菜咖哩",
+    "name": "太陽之力番茄咖哩",
     "category": "curry",
     "baseEnergy": 1910,
     "ingredients": { "tomato": 10, "herb": 5 },
@@ -41,7 +41,7 @@
   },
   {
     "id": "egg_tomato_curry",
-    "name": "蛋捲咖哩",
+    "name": "入口即化蛋捲咖哩",
     "category": "curry",
     "baseEnergy": 1942,
     "ingredients": { "egg": 10, "tomato": 6 },
@@ -49,7 +49,7 @@
   },
   {
     "id": "drought_katsu_curry",
-    "name": "乾旱勝利咖哩",
+    "name": "日照炸肉排咖哩",
     "category": "curry",
     "baseEnergy": 2078,
     "ingredients": { "sausage": 10, "oil": 5 },
@@ -57,7 +57,7 @@
   },
   {
     "id": "cheeseburger_curry",
-    "name": "心意起司漢堡咖哩",
+    "name": "吃飽飽起司肉排咖哩",
     "category": "curry",
     "baseEnergy": 2150,
     "ingredients": { "milk": 8, "sausage": 8 },
@@ -65,7 +65,7 @@
   },
   {
     "id": "soft_potato_chowder",
-    "name": "鬆軟洋芋濃湯",
+    "name": "窩心白醬濃湯",
     "category": "curry",
     "baseEnergy": 3181,
     "ingredients": { "milk": 10, "potato": 8, "mushroom": 4 },
@@ -73,7 +73,7 @@
   },
   {
     "id": "mushroom_curry",
-    "name": "品鮮蘑菇咖哩",
+    "name": "蘑菇孢子咖哩",
     "category": "curry",
     "baseEnergy": 3372,
     "ingredients": { "mushroom": 14, "potato": 9 },
@@ -81,7 +81,7 @@
   },
   {
     "id": "spicy_leek_curry",
-    "name": "麻辣大蔥咖哩",
+    "name": "辣味蔥勁十足咖哩",
     "category": "curry",
     "baseEnergy": 4162,
     "ingredients": { "leek": 14, "ginger": 10, "herb": 8 },
@@ -89,7 +89,7 @@
   },
   {
     "id": "egg_bomb_curry",
-    "name": "蛋彈咖哩",
+    "name": "親子愛咖哩",
     "category": "curry",
     "baseEnergy": 4523,
     "ingredients": { "honey": 12, "apple": 11, "egg": 8, "potato": 4 },
@@ -97,7 +97,7 @@
   },
   {
     "id": "dream_eater_curry",
-    "name": "夢食奶油咖哩",
+    "name": "絕對睡眠奶油咖哩",
     "category": "curry",
     "baseEnergy": 4670,
     "ingredients": { "potato": 18, "tomato": 15, "cacao": 12, "milk": 10 },
@@ -105,7 +105,7 @@
   },
   {
     "id": "soft_corn_stew",
-    "name": "柔和玉米濃湯",
+    "name": "柔軟玉米濃湯",
     "category": "curry",
     "baseEnergy": 5702,
     "ingredients": { "corn": 14, "milk": 8, "potato": 8 },
@@ -113,7 +113,7 @@
   },
   {
     "id": "bulk_up_bean_curry",
-    "name": "勁量大豆咖哩",
+    "name": "健美豆子咖哩",
     "category": "curry",
     "baseEnergy": 5900,
     "ingredients": { "soybean": 12, "sausage": 6, "herb": 4, "egg": 4 },
@@ -121,7 +121,7 @@
   },
   {
     "id": "grilled_tail_curry",
-    "name": "炙烤尾巴咖哩",
+    "name": "炙燒尾肉咖哩",
     "category": "curry",
     "baseEnergy": 7483,
     "ingredients": { "tail": 8, "herb": 25 },
@@ -137,7 +137,7 @@
   },
   {
     "id": "dizzy_punch_curry",
-    "name": "暈眩辣拳咖哩",
+    "name": "迷你拳辣味咖哩",
     "category": "curry",
     "baseEnergy": 9445,
     "ingredients": { "coffee": 11, "herb": 11, "honey": 11 },
@@ -145,7 +145,7 @@
   },
   {
     "id": "inferno_corn_curry",
-    "name": "地獄玉米辛辣咖哩",
+    "name": "煤狐玉米乾咖哩",
     "category": "curry",
     "baseEnergy": 13690,
     "ingredients": { "herb": 27, "sausage": 24, "corn": 14, "ginger": 12 },
@@ -153,7 +153,7 @@
   },
   {
     "id": "night_slash_sukiyaki",
-    "name": "大蔥壽喜燒咖哩",
+    "name": "居合斬壽喜燒咖哩",
     "category": "curry",
     "baseEnergy": 15621,
     "ingredients": { "leek": 27, "sausage": 26, "honey": 26, "egg": 22 },
@@ -161,7 +161,7 @@
   },
   {
     "id": "hidden_power_stew",
-    "name": "隱藏力量提神燉菜",
+    "name": "覺醒力量濃湯",
     "category": "curry",
     "baseEnergy": 19081,
     "ingredients": { "soybean": 28, "tomato": 25, "mushroom": 23, "coffee": 16 },
@@ -169,7 +169,7 @@
   },
   {
     "id": "pumpkin_lantern_stew",
-    "name": "南瓜燈籠燉菜",
+    "name": "扮演南瓜精濃湯",
     "category": "curry",
     "baseEnergy": 20655,
     "ingredients": { "pumpkin": 10, "sausage": 16, "potato": 18, "mushroom": 25 },
@@ -177,7 +177,7 @@
   },
   {
     "id": "overgrow_avocado_curry",
-    "name": "茂盛酪梨咖哩",
+    "name": "茂盛焗烤酪梨",
     "category": "curry",
     "baseEnergy": 24802,
     "ingredients": { "avocado": 22, "potato": 20, "milk": 41, "oil": 32 },
@@ -193,7 +193,7 @@
   },
   {
     "id": "snoozy_tomato_salad",
-    "name": "睡眠番茄沙拉",
+    "name": "好眠番茄沙拉",
     "category": "salad",
     "baseEnergy": 978,
     "ingredients": { "tomato": 8 },
@@ -201,7 +201,7 @@
   },
   {
     "id": "bean_ham_salad",
-    "name": "豆腸火腿沙拉",
+    "name": "豆製火腿沙拉",
     "category": "salad",
     "baseEnergy": 1045,
     "ingredients": { "sausage": 8 },
@@ -209,7 +209,7 @@
   },
   {
     "id": "water_veil_tofu_salad",
-    "name": "水膜豆腐沙拉",
+    "name": "濕潤豆腐沙拉",
     "category": "salad",
     "baseEnergy": 1898,
     "ingredients": { "soybean": 10, "tomato": 6 },
@@ -217,7 +217,7 @@
   },
   {
     "id": "immunity_leek_salad",
-    "name": "大蔥增免力沙拉",
+    "name": "免疫蔥花沙拉",
     "category": "salad",
     "baseEnergy": 2114,
     "ingredients": { "leek": 10, "ginger": 5 },
@@ -225,7 +225,7 @@
   },
   {
     "id": "spore_mushroom_salad",
-    "name": "孢子蘑菇沙拉",
+    "name": "蘑菇孢子沙拉",
     "category": "salad",
     "baseEnergy": 2655,
     "ingredients": { "mushroom": 17, "tomato": 8, "oil": 8 },
@@ -233,7 +233,7 @@
   },
   {
     "id": "snow_cloak_caesar",
-    "name": "凱撒沙拉",
+    "name": "撥雪凱撒沙拉",
     "category": "salad",
     "baseEnergy": 2785,
     "ingredients": { "milk": 10, "sausage": 6 },
@@ -241,7 +241,7 @@
   },
   {
     "id": "gluttony_potato_salad",
-    "name": "貪食洋芋沙拉",
+    "name": "食吃鬼洋芋沙拉",
     "category": "salad",
     "baseEnergy": 2845,
     "ingredients": { "potato": 14, "egg": 9, "sausage": 7, "apple": 6 },
@@ -249,7 +249,7 @@
   },
   {
     "id": "superpower_salad",
-    "name": "超能極限沙拉",
+    "name": "蠻力豪邁沙拉",
     "category": "salad",
     "baseEnergy": 2942,
     "ingredients": { "sausage": 9, "ginger": 6, "egg": 5, "potato": 3 },
@@ -257,7 +257,7 @@
   },
   {
     "id": "caprese_salad",
-    "name": "卡普雷塞沙拉",
+    "name": "哞哞起司番茄沙拉",
     "category": "salad",
     "baseEnergy": 3046,
     "ingredients": { "milk": 12, "tomato": 6, "oil": 5 },
@@ -265,7 +265,7 @@
   },
   {
     "id": "contrary_cacao_salad",
-    "name": "巧克力肉類沙拉",
+    "name": "心情不定肉沙拉淋巧克力醬",
     "category": "salad",
     "baseEnergy": 3113,
     "ingredients": { "cacao": 14, "sausage": 9 },
@@ -273,7 +273,7 @@
   },
   {
     "id": "overheat_ginger_salad",
-    "name": "熱辣薑沙拉",
+    "name": "過熱沙拉",
     "category": "salad",
     "baseEnergy": 3665,
     "ingredients": { "herb": 17, "ginger": 10, "tomato": 8 },
@@ -281,7 +281,7 @@
   },
   {
     "id": "fancy_apple_cheese_salad",
-    "name": "特選蘋果起司沙拉",
+    "name": "迷人蘋果起司沙拉",
     "category": "salad",
     "baseEnergy": 5040,
     "ingredients": { "apple": 15, "milk": 5, "oil": 3 },
@@ -297,7 +297,7 @@
   },
   {
     "id": "heat_wave_tofu_salad",
-    "name": "熱浪豆腐沙拉",
+    "name": "熱風豆腐沙拉",
     "category": "salad",
     "baseEnergy": 5859,
     "ingredients": { "soybean": 10, "herb": 6 },
@@ -305,7 +305,7 @@
   },
   {
     "id": "slowpoke_tail_pepper_salad",
-    "name": "美味尾巴胡椒沙拉",
+    "name": "呆呆獸尾巴的胡椒沙拉",
     "category": "salad",
     "baseEnergy": 7125,
     "ingredients": { "tail": 10, "herb": 10, "oil": 15 },
@@ -313,7 +313,7 @@
   },
   {
     "id": "calm_fruit_salad",
-    "name": "平靜水果沙拉",
+    "name": "冥想香甜沙拉",
     "category": "salad",
     "baseEnergy": 7675,
     "ingredients": { "apple": 21, "honey": 16, "corn": 12 },
@@ -321,7 +321,7 @@
   },
   {
     "id": "corn_salad",
-    "name": "脆嫩玉米沙拉",
+    "name": "亂擊玉米沙拉",
     "category": "salad",
     "baseEnergy": 8169,
     "ingredients": { "corn": 9, "oil": 8 },
@@ -329,7 +329,7 @@
   },
   {
     "id": "cross_chop_salad",
-    "name": "交叉切割沙拉",
+    "name": "十字切碎丁沙拉",
     "category": "salad",
     "baseEnergy": 8755,
     "ingredients": { "egg": 20, "sausage": 15, "corn": 11, "tomato": 10 },
@@ -337,7 +337,7 @@
   },
   {
     "id": "coffee_salad",
-    "name": "提神咖啡沙拉",
+    "name": "不服輸咖哩沙拉",
     "category": "salad",
     "baseEnergy": 11393,
     "ingredients": { "coffee": 28, "sausage": 28, "oil": 22, "potato": 22 },
@@ -345,7 +345,7 @@
   },
   {
     "id": "blizzard_layered_salad",
-    "name": "暴雪層層沙拉",
+    "name": "落英繽紛含羞草蛋沙拉",
     "category": "salad",
     "baseEnergy": 11611,
     "ingredients": { "egg": 25, "oil": 17, "potato": 15, "sausage": 12 },
@@ -353,7 +353,7 @@
   },
   {
     "id": "yogurt_apple_salad",
-    "name": "蘋果優格沙拉",
+    "name": "蘋果酸優格沙拉",
     "category": "salad",
     "baseEnergy": 11659,
     "ingredients": { "egg": 35, "apple": 28, "tomato": 23, "milk": 18 },
@@ -361,7 +361,7 @@
   },
   {
     "id": "avocado_salad",
-    "name": "酪梨沙拉",
+    "name": "碎裂酪梨沙拉",
     "category": "salad",
     "baseEnergy": 19293,
     "ingredients": { "avocado": 14, "soybean": 18, "oil": 10 },
@@ -369,7 +369,7 @@
   },
   {
     "id": "avocado_taco",
-    "name": "酪梨薄脆餅",
+    "name": "重踏酪梨圓脆片",
     "category": "salad",
     "baseEnergy": 20218,
     "ingredients": { "avocado": 28, "corn": 25, "herb": 30, "soybean": 22 },
@@ -377,7 +377,7 @@
   },
   {
     "id": "scald_chunky_salad",
-    "name": "燙傷厚重沙拉",
+    "name": "大塊滿滿熱水沙拉",
     "category": "salad",
     "baseEnergy": 24356,
     "ingredients": { "pumpkin": 20, "potato": 30, "corn": 18, "mushroom": 27 },
@@ -385,7 +385,7 @@
   },
   {
     "id": "greengrass_salad",
-    "name": "青草沙拉",
+    "name": "萌綠沙拉",
     "category": "salad",
     "baseEnergy": 25162,
     "ingredients": { "oil": 22, "corn": 17, "tomato": 14, "potato": 9 },
@@ -409,7 +409,7 @@
   },
   {
     "id": "craft_soda",
-    "name": "工藝汽水",
+    "name": "手製勁爽汽水",
     "category": "dessert",
     "baseEnergy": 1079,
     "ingredients": { "honey": 9 },
@@ -417,7 +417,7 @@
   },
   {
     "id": "fluffy_sweet_potato",
-    "name": "鬆軟甜洋芋",
+    "name": "熟成甜薯燒",
     "category": "dessert",
     "baseEnergy": 1748,
     "ingredients": { "potato": 9, "milk": 5 },
@@ -425,7 +425,7 @@
   },
   {
     "id": "ember_ginger_tea",
-    "name": "餘燼薑茶",
+    "name": "火花蔥茶",
     "category": "dessert",
     "baseEnergy": 1907,
     "ingredients": { "ginger": 9, "apple": 7 },
@@ -433,7 +433,7 @@
   },
   {
     "id": "lucky_chant_apple_pie",
-    "name": "幸運蘋果派",
+    "name": "祈願蘋果派",
     "category": "dessert",
     "baseEnergy": 1913,
     "ingredients": { "apple": 12, "milk": 4 },
@@ -441,7 +441,7 @@
   },
   {
     "id": "stalwart_veggie_juice",
-    "name": "精力蔬菜汁",
+    "name": "我行我素蔬菜汁",
     "category": "dessert",
     "baseEnergy": 1924,
     "ingredients": { "tomato": 9, "apple": 7 },
@@ -449,7 +449,7 @@
   },
   {
     "id": "cloud_nine_soda",
-    "name": "飄飄氣泡飲",
+    "name": "輕裝豆香蛋糕",
     "category": "dessert",
     "baseEnergy": 2938,
     "ingredients": { "egg": 8, "soybean": 7 },
@@ -457,7 +457,7 @@
   },
   {
     "id": "sweet_scent_choco_cake",
-    "name": "甜香巧克力蛋糕",
+    "name": "甜甜香氣巧克力蛋糕",
     "category": "dessert",
     "baseEnergy": 3015,
     "ingredients": { "honey": 9, "cacao": 8, "milk": 7 },
@@ -473,7 +473,7 @@
   },
   {
     "id": "bean_donut",
-    "name": "大豆甜甜圈",
+    "name": "大力士豆香甜甜圈",
     "category": "dessert",
     "baseEnergy": 3314,
     "ingredients": { "oil": 9, "soybean": 6, "cacao": 7 },
@@ -489,7 +489,7 @@
   },
   {
     "id": "bulk_up_protein_shake",
-    "name": "勁量蛋白奶昔",
+    "name": "活力蛋白飲",
     "category": "dessert",
     "baseEnergy": 4734,
     "ingredients": { "soybean": 15, "cacao": 8 },
@@ -497,7 +497,7 @@
   },
   {
     "id": "warm_cookie",
-    "name": "暖心薑餅乾",
+    "name": "不屈鬆餅",
     "category": "dessert",
     "baseEnergy": 4921,
     "ingredients": { "honey": 14, "ginger": 12, "cacao": 5, "egg": 4 },
@@ -505,7 +505,7 @@
   },
   {
     "id": "neroli_tea",
-    "name": "奈洛莉恢復茶",
+    "name": "橙夢的排毒茶",
     "category": "dessert",
     "baseEnergy": 5065,
     "ingredients": { "ginger": 11, "apple": 15, "mushroom": 9 },
@@ -513,7 +513,7 @@
   },
   {
     "id": "lovely_kiss_smoothie",
-    "name": "愛之吻奶昔",
+    "name": "惡魔之吻水果牛奶",
     "category": "dessert",
     "baseEnergy": 5547,
     "ingredients": { "apple": 11, "milk": 9, "honey": 7, "cacao": 8 },
@@ -521,7 +521,7 @@
   },
   {
     "id": "popcorn",
-    "name": "爆炸爆米花",
+    "name": "大爆炸爆米花",
     "category": "dessert",
     "baseEnergy": 6048,
     "ingredients": { "corn": 15, "oil": 14, "milk": 7 },
@@ -529,7 +529,7 @@
   },
   {
     "id": "jigglypuff_fruit_pudding",
-    "name": "胖丁水果布丁",
+    "name": "胖丁百匯布丁",
     "category": "dessert",
     "baseEnergy": 6793,
     "ingredients": { "honey": 20, "egg": 15, "milk": 10, "apple": 10 },
@@ -537,7 +537,7 @@
   },
   {
     "id": "early_bird_coffee_jelly",
-    "name": "早起鳥咖啡凍",
+    "name": "早起咖啡凍",
     "category": "dessert",
     "baseEnergy": 7125,
     "ingredients": { "coffee": 16, "milk": 14, "honey": 12 },
@@ -545,7 +545,7 @@
   },
   {
     "id": "corn_tiramisu",
-    "name": "玉米提拉米蘇",
+    "name": "破格玉米香提拉米蘇",
     "category": "dessert",
     "baseEnergy": 7594,
     "ingredients": { "coffee": 14, "corn": 14, "milk": 12 },
@@ -553,7 +553,7 @@
   },
   {
     "id": "avocado_smoothie",
-    "name": "酪梨奶昔",
+    "name": "青草攪拌器冰沙",
     "category": "dessert",
     "baseEnergy": 8165,
     "ingredients": { "avocado": 18, "tomato": 16, "milk": 14 },
@@ -561,7 +561,7 @@
   },
   {
     "id": "corn_scone",
-    "name": "玉米司康",
+    "name": "茶會玉米司康",
     "category": "dessert",
     "baseEnergy": 10925,
     "ingredients": { "apple": 20, "ginger": 20, "corn": 18, "milk": 9 },
@@ -569,7 +569,7 @@
   },
   {
     "id": "spicy_cola",
-    "name": "辛香可樂",
+    "name": "電光香料可樂",
     "category": "dessert",
     "baseEnergy": 13834,
     "ingredients": { "apple": 35, "ginger": 20, "leek": 20, "coffee": 12 },
@@ -577,7 +577,7 @@
   },
   {
     "id": "shadow_ball_pudding",
-    "name": "暗影球可可布丁",
+    "name": "土王閃電泡芙",
     "category": "dessert",
     "baseEnergy": 17494,
     "ingredients": { "cacao": 30, "milk": 26, "coffee": 24, "honey": 22 },
@@ -585,7 +585,7 @@
   },
   {
     "id": "flower_gift_macaron",
-    "name": "花卉禮物馬卡龍",
+    "name": "花之禮馬卡龍",
     "category": "dessert",
     "baseEnergy": 20885,
     "ingredients": { "cacao": 25, "egg": 25, "honey": 17, "milk": 10 },
@@ -593,7 +593,7 @@
   },
   {
     "id": "pumpkin_pancake",
-    "name": "南瓜煎餅",
+    "name": "心跳加速鬼面鬆餅",
     "category": "dessert",
     "baseEnergy": 24354,
     "ingredients": { "pumpkin": 18, "egg": 24, "honey": 32, "tomato": 29 },
@@ -601,7 +601,7 @@
   },
   {
     "id": "bee_choco_waffle",
-    "name": "蜂蜜巧克力鬆餅",
+    "name": "探蜜巧克力格子鬆餅",
     "category": "dessert",
     "baseEnergy": 25484,
     "ingredients": { "honey": 38, "corn": 28, "oil": 28, "cacao": 21 },
