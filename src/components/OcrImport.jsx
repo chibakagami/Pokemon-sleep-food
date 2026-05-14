@@ -1,25 +1,19 @@
 import { useState, useRef } from 'react'
 import ingredientsData from '../data/ingredients.json'
 
-const STORAGE_KEY = 'psf_gemini_key'
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent'
+const STORAGE_KEY = 'psf_ocrspace_key'
+const OCRSPACE_URL = 'https://api.ocr.space/parse/image'
 
-const ingList = ingredientsData.map(i => `${i.id}="${i.name}"`).join('、')
-
-const PROMPT = `這是一張 Pokémon Sleep 的背包食材截圖。
-請辨識畫面中出現的食材名稱與對應數量。
-只從以下食材 ID 對應表中配對（格式為 id="遊戲名稱"）：
-${ingList}
-請回傳純 JSON 物件，key 為 id，value 為整數數量，例如：{"tomato":74,"milk":32}
-若某食材未出現在截圖中，請勿包含在結果中。只回傳 JSON，不要任何說明文字。`
-
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(reader.result.split(',')[1])
-    reader.onerror = reject
-    reader.readAsDataURL(file)
+function parseIngredients(text) {
+  const found = {}
+  ingredientsData.forEach(ing => {
+    const idx = text.indexOf(ing.name)
+    if (idx === -1) return
+    const after = text.slice(idx + ing.name.length, idx + ing.name.length + 12)
+    const match = after.match(/\d+/)
+    if (match) found[ing.id] = Math.max(0, Math.min(999, parseInt(match[0], 10)))
   })
+  return found
 }
 
 export default function OcrImport({ onApply, onClose }) {
@@ -51,37 +45,24 @@ export default function OcrImport({ onApply, onClose }) {
     setStatus('running')
     setErrorMsg('')
     try {
-      const b64 = await toBase64(file)
-      const mimeType = file.type || 'image/jpeg'
-      const body = {
-        contents: [{
-          parts: [
-            { inline_data: { mime_type: mimeType, data: b64 } },
-            { text: PROMPT },
-          ],
-        }],
-      }
-      const res = await fetch(`${GEMINI_URL}?key=${apiKey.trim()}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      })
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}))
-        throw new Error(err?.error?.message ?? `HTTP ${res.status}`)
-      }
+      const formData = new FormData()
+      formData.append('apikey', apiKey.trim())
+      formData.append('file', file)
+      formData.append('language', 'cht')
+      formData.append('isOverlayRequired', 'false')
+      formData.append('OCREngine', '2')
+
+      const res = await fetch(OCRSPACE_URL, { method: 'POST', body: formData })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+
       const data = await res.json()
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? ''
-      const jsonMatch = text.match(/\{[\s\S]*\}/)
-      if (!jsonMatch) throw new Error('回應格式錯誤，請重試')
-      const parsed = JSON.parse(jsonMatch[0])
-      const valid = {}
-      ingredientsData.forEach(ing => {
-        if (ing.id in parsed && typeof parsed[ing.id] === 'number') {
-          valid[ing.id] = Math.max(0, Math.min(999, Math.round(parsed[ing.id])))
-        }
-      })
-      setResults(valid)
+      if (data.IsErroredOnProcessing) {
+        throw new Error(data.ErrorMessage?.[0] ?? '辨識失敗')
+      }
+
+      const text = data.ParsedResults?.map(r => r.ParsedText).join('\n') ?? ''
+      const found = parseIngredients(text)
+      setResults(found)
       setStatus('done')
     } catch (e) {
       setErrorMsg(e.message ?? '未知錯誤')
@@ -104,16 +85,16 @@ export default function OcrImport({ onApply, onClose }) {
     <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
       <div className="modal-box ocr-modal">
         <div className="modal-header">
-          <span className="modal-title">📷 掃描截圖（Gemini）</span>
+          <span className="modal-title">📷 掃描截圖（OCR.space）</span>
           <button className="modal-close" onClick={onClose}>✕</button>
         </div>
 
         <div className="ocr-key-row">
-          <label className="ocr-key-label">Gemini API Key</label>
+          <label className="ocr-key-label">OCR.space API Key</label>
           <input
             className="ocr-key-input"
             type="password"
-            placeholder="AIza…（存於本機，不會上傳）"
+            placeholder="免費申請：ocr.space（存於本機，不會上傳）"
             value={apiKey}
             onChange={e => saveKey(e.target.value)}
           />
