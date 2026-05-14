@@ -11,7 +11,7 @@ export default function RecipeCard({
   recipe, inventory,
   level, target, productionCount,
   onLevelChange, onTargetChange, onCook,
-  isSunday, currentPot,
+  currentPot,
   inStockpile, onToggleStockpile,
 }) {
   const { name, category, ingredients, feasible, sundayOnly, tooBig, ingTotal, potRemain, image, baseEnergy } = recipe
@@ -134,14 +134,12 @@ export default function RecipeCard({
         <div className="production-row">
           <span className="cook-count">製作 {productionCount} 次</span>
           <div className="production-actions">
-            {isSunday && (
-              <button
-                className={`stockpile-btn ${inStockpile ? 'in-list' : ''}`}
-                onClick={onToggleStockpile}
-              >
-                {inStockpile ? '✓ 囤積中' : '＋囤積'}
-              </button>
-            )}
+            <button
+              className={`stockpile-btn ${inStockpile ? 'in-list' : ''}`}
+              onClick={onToggleStockpile}
+            >
+              {inStockpile ? '✓ 囤積中' : '＋囤積'}
+            </button>
             <button
               className={`cook-btn ${feasible ? 'cook-ready' : 'cook-dim'}`}
               onClick={handleCookClick}

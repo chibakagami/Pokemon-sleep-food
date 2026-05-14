@@ -157,6 +157,26 @@
   gap: 12px;
 }
 
+.header-text {
+  flex: 1;
+}
+
+.header-settings-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.header-settings-btn:active {
+  background: rgba(255,255,255,0.3);
+}
+
 .header-icon {
   font-size: 2rem;
 }
@@ -659,6 +679,60 @@
   color: var(--text-muted);
   font-size: 0.85rem;
   margin: 0;
+}
+
+/* ── Ingredient total bar ─────────────────────────── */
+.ing-total-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ing-total-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.ing-total-label strong {
+  color: var(--green-dark);
+}
+
+.ing-total-label strong.over-limit {
+  color: var(--red-lack);
+}
+
+.ing-total-sep {
+  color: var(--border);
+}
+
+.ing-total-bar-bg {
+  height: 5px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ing-total-bar-fill {
+  height: 100%;
+  background: var(--green-dark);
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.ing-total-bar-fill.over {
+  background: var(--red-lack);
+}
+
+/* ── Settings section title ───────────────────────── */
+.settings-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 4px;
 }
 
 .ocr-scan-btn {
