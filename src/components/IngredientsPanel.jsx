@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import ingredientsData from '../data/ingredients.json'
+import OcrImport from './OcrImport'
 
-export default function IngredientsPanel({ inventory, onUpdate }) {
+export default function IngredientsPanel({ inventory, onUpdate, onApplyInventory }) {
   const [imgErrors, setImgErrors] = useState({})
+  const [showOcr, setShowOcr] = useState(false)
 
   const handleInput = (id, raw) => {
     const val = Math.max(0, Math.min(999, parseInt(raw, 10) || 0))
@@ -11,7 +13,12 @@ export default function IngredientsPanel({ inventory, onUpdate }) {
 
   return (
     <div className="ingredients-panel">
-      <p className="panel-hint">輸入你目前擁有的食材數量</p>
+      <div className="panel-top-bar">
+        <p className="panel-hint">輸入你目前擁有的食材數量</p>
+        <button className="ocr-scan-btn" onClick={() => setShowOcr(true)}>
+          📷 掃描截圖
+        </button>
+      </div>
       <div className="ingredients-grid">
         {ingredientsData.map(ing => {
           const count = inventory[ing.id] ?? 0
@@ -60,6 +67,13 @@ export default function IngredientsPanel({ inventory, onUpdate }) {
           全部清零
         </button>
       </div>
+
+      {showOcr && (
+        <OcrImport
+          onApply={onApplyInventory}
+          onClose={() => setShowOcr(false)}
+        />
+      )}
     </div>
   )
 }

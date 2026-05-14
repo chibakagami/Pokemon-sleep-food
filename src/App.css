@@ -646,3 +646,655 @@
   color: var(--text-muted);
   font-size: 0.95rem;
 }
+
+/* ── Panel top bar (ingredients) ──────────────────── */
+.panel-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0 10px;
+}
+
+.panel-hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.ocr-scan-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--green-dark);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ── List controls extension ──────────────────────── */
+.list-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sunday-toggle {
+  padding: 5px 12px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.sunday-toggle.active {
+  background: #fff8e1;
+  border-color: #f0b429;
+  color: #b7700a;
+}
+
+.pot-config-btn {
+  padding: 5px 10px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pot-info-bar {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 4px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pot-info-bar strong {
+  color: var(--text-main);
+}
+
+.sunday-badge {
+  background: #fff8e1;
+  border: 1px solid #f0b429;
+  color: #b7700a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+
+/* ── RecipeCard badges & pot remain ──────────────── */
+.sunday-only-badge {
+  background: #fff8e1;
+  color: #b7700a;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.too-big-badge {
+  background: #fdecea;
+  color: #c0392b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.recipe-card.too-big {
+  opacity: 0.5;
+}
+
+.pot-remain-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.pot-remain-tag.has-room {
+  background: #fff3e0;
+  color: #e67e22;
+}
+
+.pot-remain-tag.exact-fit {
+  background: #e8f5e9;
+  color: var(--green-dark);
+}
+
+/* ── Production row actions ───────────────────────── */
+.production-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stockpile-btn {
+  padding: 5px 10px;
+  border-radius: 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.stockpile-btn.in-list {
+  background: #e8f5e9;
+  border-color: var(--green-dark);
+  color: var(--green-dark);
+}
+
+/* ── Modal shared ─────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 480px) {
+  .modal-overlay {
+    align-items: center;
+  }
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: 16px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 480px) {
+  .modal-box {
+    border-radius: 20px;
+    max-height: 85dvh;
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── OCR modal ────────────────────────────────────── */
+.ocr-upload-area {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ocr-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.ocr-placeholder-icon {
+  font-size: 2rem;
+}
+
+.ocr-preview-img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.ocr-progress-wrap {
+  position: relative;
+  background: #eee;
+  border-radius: 8px;
+  height: 28px;
+  overflow: hidden;
+}
+
+.ocr-progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--green-dark);
+  transition: width 0.3s;
+}
+
+.ocr-progress-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+.ocr-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.ocr-summary {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.ocr-results {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.ocr-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.ocr-row.detected {
+  background: #f0faf4;
+}
+
+.ocr-row.missing {
+  opacity: 0.55;
+}
+
+.ocr-ing-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ocr-qty-input {
+  width: 56px;
+  height: 28px;
+  text-align: center;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  -moz-appearance: textfield;
+}
+
+.ocr-qty-input::-webkit-outer-spin-button,
+.ocr-qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.ocr-actions, .cook-actions, .pot-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.ocr-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.ocr-btn.primary {
+  background: var(--green-dark);
+  color: #fff;
+}
+
+.ocr-btn.secondary {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* ── Pot config modal ─────────────────────────────── */
+.pot-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pot-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.pot-input {
+  width: 80px;
+  height: 36px;
+  text-align: center;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  -moz-appearance: textfield;
+}
+
+.pot-input::-webkit-outer-spin-button,
+.pot-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* ── Cook modal ───────────────────────────────────── */
+.cook-recipe-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.cook-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cook-ing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cook-ing-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.87rem;
+}
+
+.cook-ing-qty {
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.cook-pot-remain {
+  background: #fff3e0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: #e67e22;
+  font-weight: 600;
+}
+
+.cook-pot-remain strong {
+  font-size: 1rem;
+}
+
+.cook-extras-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.cook-extra-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 3px 2px;
+  font-size: 0.85rem;
+}
+
+.cook-extra-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.cook-extra-have {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.cook-extra-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cook-extra-chosen {
+  font-weight: 700;
+  font-size: 0.9rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ── Stockpile panel ──────────────────────────────── */
+.stockpile-panel {
+  margin-bottom: 10px;
+  border-radius: 12px;
+  border: 1.5px solid #f0b429;
+  background: #fffdf0;
+  overflow: hidden;
+}
+
+.sp-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #b7700a;
+  background: transparent;
+  gap: 8px;
+}
+
+.sp-all-met {
+  flex: 1;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--green-dark);
+}
+
+.sp-chevron {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.sp-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 12px 12px;
+}
+
+.sp-recipe-block {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.sp-recipe-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.sp-recipe-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+  flex: 1;
+  min-width: 0;
+}
+
+.sp-recipe-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.sp-meals-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sp-meals-select {
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  font-size: 0.82rem;
+  font-family: inherit;
+  background: #fff;
+}
+
+.sp-remove {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.sp-ings {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sp-ing-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.sp-ing-name {
+  width: 72px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.sp-bar-wrap {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sp-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.sp-bar-fill.ok {
+  background: var(--green-dark);
+}
+
+.sp-bar-fill.lacking {
+  background: #e74c3c;
+}
+
+.sp-ing-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 52px;
+  text-align: right;
+}
+
+.sp-ing-count.ok {
+  color: var(--green-dark);
+}
+
+.sp-ing-count.lacking {
+  color: #e74c3c;
+}
+
+.sp-diff {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.sp-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 0;
+}
+
+.sp-status.met {
+  color: var(--green-dark);
+}
+
+.sp-status.unmet {
+  color: #e74c3c;
+}
