@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import RecipeCard from './RecipeCard'
-import PotConfigModal from './PotConfigModal'
 import StockpilePanel from './StockpilePanel'
 import recipesData from '../data/recipes.json'
 
@@ -34,13 +33,12 @@ export default function RecipeList({
   recipeLevels, setRecipeLevels,
   recipeTargets, setRecipeTargets,
   productionCounts, onCook,
-  potConfig, setPotConfig,
+  potConfig,
   isSunday, setIsSunday,
   stockpileList, setStockpileList,
 }) {
   const [category, setCategory] = useState('all')
   const [sortBy, setSortBy] = useState('feasible')
-  const [showPotConfig, setShowPotConfig] = useState(false)
 
   const currentPot = isSunday ? potConfig.sunday : potConfig.weekday
 
@@ -120,9 +118,6 @@ export default function RecipeList({
           >
             🌞 週日
           </button>
-          <button className="pot-config-btn" onClick={() => setShowPotConfig(true)}>
-            ⚙️ 鍋子
-          </button>
           <select
             className="sort-select"
             value={sortBy}
@@ -140,13 +135,11 @@ export default function RecipeList({
         {isSunday && <span className="sunday-badge">🌞 週日模式</span>}
       </div>
 
-      {isSunday && (
-        <StockpilePanel
-          stockpileList={stockpileList}
-          setStockpileList={setStockpileList}
-          inventory={inventory}
-        />
-      )}
+      <StockpilePanel
+        stockpileList={stockpileList}
+        setStockpileList={setStockpileList}
+        inventory={inventory}
+      />
 
       <div className="recipes-grid">
         {processed.map(recipe => (
@@ -160,7 +153,6 @@ export default function RecipeList({
             onLevelChange={lv => setRecipeLevels(prev => ({ ...prev, [recipe.id]: lv }))}
             onTargetChange={tg => setRecipeTargets(prev => ({ ...prev, [recipe.id]: tg }))}
             onCook={(extras) => onCook(recipe, extras)}
-            isSunday={isSunday}
             currentPot={currentPot}
             inStockpile={!!stockpileList.find(s => s.recipeId === recipe.id)}
             onToggleStockpile={() => toggleStockpile(recipe.id)}
@@ -170,14 +162,6 @@ export default function RecipeList({
 
       {processed.length === 0 && (
         <div className="empty-state">沒有符合的料理</div>
-      )}
-
-      {showPotConfig && (
-        <PotConfigModal
-          potConfig={potConfig}
-          onSave={setPotConfig}
-          onClose={() => setShowPotConfig(false)}
-        />
       )}
     </div>
   )

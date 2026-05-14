@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ingredientsData from '../data/ingredients.json'
 import OcrImport from './OcrImport'
 
-export default function IngredientsPanel({ inventory, onUpdate, onApplyInventory }) {
+export default function IngredientsPanel({ inventory, onUpdate, onApplyInventory, ingMax }) {
   const [imgErrors, setImgErrors] = useState({})
   const [showOcr, setShowOcr] = useState(false)
 
@@ -11,14 +11,31 @@ export default function IngredientsPanel({ inventory, onUpdate, onApplyInventory
     onUpdate(id, val)
   }
 
+  const total = Object.values(inventory).reduce((s, v) => s + v, 0)
+  const ratio = Math.min(1, total / ingMax)
+  const overLimit = total > ingMax
+
   return (
     <div className="ingredients-panel">
       <div className="panel-top-bar">
-        <p className="panel-hint">輸入你目前擁有的食材數量</p>
+        <div className="ing-total-wrap">
+          <span className="ing-total-label">
+            總計 <strong className={overLimit ? 'over-limit' : ''}>{total}</strong>
+            <span className="ing-total-sep"> / </span>
+            {ingMax}
+          </span>
+          <div className="ing-total-bar-bg">
+            <div
+              className={`ing-total-bar-fill ${overLimit ? 'over' : ''}`}
+              style={{ width: `${Math.round(ratio * 100)}%` }}
+            />
+          </div>
+        </div>
         <button className="ocr-scan-btn" onClick={() => setShowOcr(true)}>
           📷 掃描截圖
         </button>
       </div>
+
       <div className="ingredients-grid">
         {ingredientsData.map(ing => {
           const count = inventory[ing.id] ?? 0
@@ -60,6 +77,7 @@ export default function IngredientsPanel({ inventory, onUpdate, onApplyInventory
           )
         })}
       </div>
+
       <div className="reset-row">
         <button className="reset-btn" onClick={() => {
           ingredientsData.forEach(ing => onUpdate(ing.id, 0))

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import IngredientsPanel from './components/IngredientsPanel'
 import RecipeList from './components/RecipeList'
 import SplashScreen from './components/SplashScreen'
+import SettingsModal from './components/SettingsModal'
 import { useStorage } from './hooks/useStorage'
 import ingredientsData from './data/ingredients.json'
 import './App.css'
@@ -11,6 +12,7 @@ const initialInventory = Object.fromEntries(ingredientsData.map(ing => [ing.id, 
 export default function App() {
   const [started, setStarted] = useState(false)
   const [tab, setTab] = useState('recipes')
+  const [showSettings, setShowSettings] = useState(false)
   const [inventory, setInventory] = useStorage('psf_inventory', initialInventory)
   const [recipeLevels, setRecipeLevels] = useStorage('psf_levels', {})
   const [recipeTargets, setRecipeTargets] = useStorage('psf_targets', {})
@@ -18,6 +20,7 @@ export default function App() {
   const [potConfig, setPotConfig] = useStorage('psf_pot', { weekday: 81, sunday: 122 })
   const [isSunday, setIsSunday] = useStorage('psf_is_sunday', false)
   const [stockpileList, setStockpileList] = useStorage('psf_stockpile', [])
+  const [ingMax, setIngMax] = useStorage('psf_ing_max', 800)
 
   const updateIngredient = (id, value) => {
     setInventory(prev => ({ ...prev, [id]: Math.max(0, Math.min(999, value)) }))
@@ -56,10 +59,13 @@ export default function App() {
       <header className="app-header">
         <div className="header-inner">
           <span className="header-icon">🍲</span>
-          <div>
+          <div className="header-text">
             <h1 className="header-title">料理助手</h1>
             <p className="header-sub">Pokémon Sleep</p>
           </div>
+          <button className="header-settings-btn" onClick={() => setShowSettings(true)}>
+            ⚙️ 設定
+          </button>
         </div>
       </header>
 
@@ -84,6 +90,7 @@ export default function App() {
             inventory={inventory}
             onUpdate={updateIngredient}
             onApplyInventory={applyInventory}
+            ingMax={ingMax}
           />
         ) : (
           <RecipeList
@@ -95,7 +102,6 @@ export default function App() {
             productionCounts={productionCounts}
             onCook={handleCook}
             potConfig={potConfig}
-            setPotConfig={setPotConfig}
             isSunday={isSunday}
             setIsSunday={setIsSunday}
             stockpileList={stockpileList}
@@ -103,6 +109,16 @@ export default function App() {
           />
         )}
       </main>
+
+      {showSettings && (
+        <SettingsModal
+          potConfig={potConfig}
+          ingMax={ingMax}
+          onSavePot={setPotConfig}
+          onSaveIngMax={setIngMax}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
     </div>
   )
 }
