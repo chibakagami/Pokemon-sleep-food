@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ingredientsData from '../data/ingredients.json'
+import CookModal from './CookModal'
 
 const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
 
@@ -10,17 +11,31 @@ export default function RecipeCard({
   recipe, inventory,
   level, target, productionCount,
   onLevelChange, onTargetChange, onCook,
+  isSunday, currentPot,
+  inStockpile, onToggleStockpile,
 }) {
-  const { name, category, ingredients, feasible, image, baseEnergy } = recipe
+  const { name, category, ingredients, feasible, sundayOnly, tooBig, ingTotal, potRemain, image, baseEnergy } = recipe
   const [recipeImgErr, setRecipeImgErr] = useState(false)
   const [ingImgErrors, setIngImgErrors] = useState({})
+  const [showCookModal, setShowCookModal] = useState(false)
 
   const clamp = v => Math.min(MAX_LEVEL, Math.max(0, v))
   const achieved = target > 0 && level >= target
-  const totalIngredients = Object.values(ingredients).reduce((s, v) => s + v, 0)
+
+  const handleCookClick = () => {
+    if (!feasible) return
+    if (potRemain > 0) {
+      setShowCookModal(true)
+    } else {
+      onCook({})
+    }
+  }
+
+  const stockpileEntry = inStockpile
+  const stockpileMeals = stockpileEntry ? (recipe._stockpileMeals ?? 3) : 0
 
   return (
-    <div className={`recipe-card ${feasible ? 'feasible' : 'infeasible'}`}>
+    <div className={`recipe-card ${feasible ? 'feasible' : 'infeasible'} ${tooBig ? 'too-big' : ''}`}>
       <div className="recipe-header">
         {image && !recipeImgErr ? (
           <img
@@ -35,7 +50,7 @@ export default function RecipeCard({
         <div className="recipe-title-block">
           <div className="recipe-name-row">
             <span className="recipe-name">{name}</span>
-            <span className="recipe-total-ing" title="總食材數">×{totalIngredients}</span>
+            <span className="recipe-total-ing" title="總食材數">×{ingTotal}</span>
           </div>
           {baseEnergy != null && (
             <span className="recipe-base-energy">基礎能量 {baseEnergy.toLocaleString()}</span>
@@ -44,6 +59,8 @@ export default function RecipeCard({
         <div className="header-badges">
           {feasible && <span className="feasible-badge">✓ 可做</span>}
           {achieved && <span className="achieved-badge">★ 達標</span>}
+          {sundayOnly && !tooBig && <span className="sunday-only-badge">🌞 週日</span>}
+          {tooBig && <span className="too-big-badge">🚫 鍋子太小</span>}
         </div>
       </div>
 
@@ -72,6 +89,14 @@ export default function RecipeCard({
           )
         })}
       </div>
+
+      {!tooBig && potRemain !== undefined && (
+        <div className={`pot-remain-tag ${potRemain > 0 ? 'has-room' : 'exact-fit'}`}>
+          {potRemain > 0
+            ? `+${potRemain} 空位可補料`
+            : '恰好填滿鍋子'}
+        </div>
+      )}
 
       <div className="recipe-footer">
         <div className="level-row">
@@ -108,12 +133,32 @@ export default function RecipeCard({
         </div>
         <div className="production-row">
           <span className="cook-count">製作 {productionCount} 次</span>
-          <button
-            className={`cook-btn ${feasible ? 'cook-ready' : 'cook-dim'}`}
-            onClick={onCook}
-          >已製作 +1</button>
+          <div className="production-actions">
+            {isSunday && (
+              <button
+                className={`stockpile-btn ${inStockpile ? 'in-list' : ''}`}
+                onClick={onToggleStockpile}
+              >
+                {inStockpile ? '✓ 囤積中' : '＋囤積'}
+              </button>
+            )}
+            <button
+              className={`cook-btn ${feasible ? 'cook-ready' : 'cook-dim'}`}
+              onClick={handleCookClick}
+            >🍳 烹飪</button>
+          </div>
         </div>
       </div>
+
+      {showCookModal && (
+        <CookModal
+          recipe={recipe}
+          inventory={inventory}
+          potRemain={potRemain}
+          onConfirm={(extras) => onCook(extras)}
+          onClose={() => setShowCookModal(false)}
+        />
+      )}
     </div>
   )
 }

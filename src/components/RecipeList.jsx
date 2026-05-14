@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import RecipeCard from './RecipeCard'
+import PotConfigModal from './PotConfigModal'
+import StockpilePanel from './StockpilePanel'
 import recipesData from '../data/recipes.json'
 
 const CATEGORIES = [
@@ -32,19 +34,35 @@ export default function RecipeList({
   recipeLevels, setRecipeLevels,
   recipeTargets, setRecipeTargets,
   productionCounts, onCook,
+  potConfig, setPotConfig,
+  isSunday, setIsSunday,
+  stockpileList, setStockpileList,
 }) {
   const [category, setCategory] = useState('all')
   const [sortBy, setSortBy] = useState('feasible')
+  const [showPotConfig, setShowPotConfig] = useState(false)
+
+  const currentPot = isSunday ? potConfig.sunday : potConfig.weekday
 
   const processed = recipesData
     .filter(r => category === 'all' || r.category === category)
-    .map(r => ({
-      ...r,
-      feasible: canMake(r, inventory),
-      level: recipeLevels[r.id] ?? 0,
-      target: recipeTargets[r.id] ?? 0,
-      productionCount: productionCounts[r.id] ?? 0,
-    }))
+    .map(r => {
+      const total = ingTotal(r)
+      const feasible = canMake(r, inventory) && total <= currentPot
+      const sundayOnly = total > potConfig.weekday && total <= potConfig.sunday
+      const tooBig = total > potConfig.sunday
+      return {
+        ...r,
+        feasible,
+        sundayOnly,
+        tooBig,
+        ingTotal: total,
+        potRemain: currentPot - total,
+        level: recipeLevels[r.id] ?? 0,
+        target: recipeTargets[r.id] ?? 0,
+        productionCount: productionCounts[r.id] ?? 0,
+      }
+    })
     .sort((a, b) => {
       if (sortBy === 'feasible') {
         if (a.feasible !== b.feasible) return b.feasible - a.feasible
@@ -55,7 +73,7 @@ export default function RecipeList({
         return a.name.localeCompare(b.name, 'zh-TW')
       }
       if (sortBy === 'ingredients') {
-        const diff = ingTotal(b) - ingTotal(a)
+        const diff = b.ingTotal - a.ingTotal
         if (diff !== 0) return diff
         return a.name.localeCompare(b.name, 'zh-TW')
       }
@@ -68,6 +86,14 @@ export default function RecipeList({
     })
 
   const feasibleCount = processed.filter(r => r.feasible).length
+
+  const toggleStockpile = (recipeId) => {
+    setStockpileList(prev => {
+      const exists = prev.find(s => s.recipeId === recipeId)
+      if (exists) return prev.filter(s => s.recipeId !== recipeId)
+      return [...prev, { recipeId, meals: 3 }]
+    })
+  }
 
   return (
     <div className="recipe-list">
@@ -87,16 +113,40 @@ export default function RecipeList({
         <span className="feasible-count">
           可製作：<strong>{feasibleCount}</strong> / {processed.length}
         </span>
-        <select
-          className="sort-select"
-          value={sortBy}
-          onChange={e => setSortBy(e.target.value)}
-        >
-          {SORT_OPTIONS.map(opt => (
-            <option key={opt.id} value={opt.id}>{opt.label}</option>
-          ))}
-        </select>
+        <div className="list-controls-right">
+          <button
+            className={`sunday-toggle ${isSunday ? 'active' : ''}`}
+            onClick={() => setIsSunday(v => !v)}
+          >
+            🌞 週日
+          </button>
+          <button className="pot-config-btn" onClick={() => setShowPotConfig(true)}>
+            ⚙️ 鍋子
+          </button>
+          <select
+            className="sort-select"
+            value={sortBy}
+            onChange={e => setSortBy(e.target.value)}
+          >
+            {SORT_OPTIONS.map(opt => (
+              <option key={opt.id} value={opt.id}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
       </div>
+
+      <div className="pot-info-bar">
+        鍋子容量：<strong>{currentPot}</strong>
+        {isSunday && <span className="sunday-badge">🌞 週日模式</span>}
+      </div>
+
+      {isSunday && (
+        <StockpilePanel
+          stockpileList={stockpileList}
+          setStockpileList={setStockpileList}
+          inventory={inventory}
+        />
+      )}
 
       <div className="recipes-grid">
         {processed.map(recipe => (
@@ -109,13 +159,25 @@ export default function RecipeList({
             productionCount={recipe.productionCount}
             onLevelChange={lv => setRecipeLevels(prev => ({ ...prev, [recipe.id]: lv }))}
             onTargetChange={tg => setRecipeTargets(prev => ({ ...prev, [recipe.id]: tg }))}
-            onCook={() => onCook(recipe)}
+            onCook={(extras) => onCook(recipe, extras)}
+            isSunday={isSunday}
+            currentPot={currentPot}
+            inStockpile={!!stockpileList.find(s => s.recipeId === recipe.id)}
+            onToggleStockpile={() => toggleStockpile(recipe.id)}
           />
         ))}
       </div>
 
       {processed.length === 0 && (
         <div className="empty-state">沒有符合的料理</div>
+      )}
+
+      {showPotConfig && (
+        <PotConfigModal
+          potConfig={potConfig}
+          onSave={setPotConfig}
+          onClose={() => setShowPotConfig(false)}
+        />
       )}
     </div>
   )

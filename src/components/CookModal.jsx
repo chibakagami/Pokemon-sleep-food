@@ -1,0 +1,91 @@
+import { useState } from 'react'
+import ingredientsData from '../data/ingredients.json'
+
+const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
+
+export default function CookModal({ recipe, inventory, potRemain, onConfirm, onClose }) {
+  const [extras, setExtras] = useState({})
+
+  const totalExtras = Object.values(extras).reduce((s, v) => s + v, 0)
+  const remaining = potRemain - totalExtras
+
+  const changeExtra = (id, delta) => {
+    setExtras(prev => {
+      const current = prev[id] ?? 0
+      const maxAdd = Math.min(inventory[id] ?? 0, current + remaining)
+      const next = Math.max(0, delta > 0 ? Math.min(maxAdd, current + 1) : current - 1)
+      if (next === 0) {
+        const { [id]: _, ...rest } = prev
+        return rest
+      }
+      return { ...prev, [id]: next }
+    })
+  }
+
+  const handleConfirm = () => {
+    onConfirm(extras)
+    onClose()
+  }
+
+  return (
+    <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="modal-box cook-modal">
+        <div className="modal-header">
+          <span className="modal-title">🍳 開始烹飪</span>
+          <button className="modal-close" onClick={onClose}>✕</button>
+        </div>
+
+        <p className="cook-recipe-name">{recipe.name}</p>
+
+        <div className="cook-section-title">料理食材</div>
+        <div className="cook-ing-list">
+          {Object.entries(recipe.ingredients).map(([id, req]) => {
+            const ing = ingMap[id]
+            return (
+              <div key={id} className="cook-ing-row">
+                <span>{ing?.emoji} {ing?.name}</span>
+                <span className="cook-ing-qty">×{req}</span>
+              </div>
+            )
+          })}
+        </div>
+
+        <div className="cook-pot-remain">
+          鍋子剩餘空間：<strong>{remaining}</strong> / {potRemain}
+        </div>
+
+        <div className="cook-section-title">補料選擇（可選）</div>
+        <div className="cook-extras-list">
+          {ingredientsData.map(ing => {
+            const have = inventory[ing.id] ?? 0
+            const chosen = extras[ing.id] ?? 0
+            return (
+              <div key={ing.id} className="cook-extra-row">
+                <span className="cook-extra-name">{ing.emoji} {ing.name}</span>
+                <span className="cook-extra-have">庫存 {have}</span>
+                <div className="cook-extra-ctrl">
+                  <button
+                    className="step-btn"
+                    onClick={() => changeExtra(ing.id, -1)}
+                    disabled={chosen === 0}
+                  >−</button>
+                  <span className="cook-extra-chosen">{chosen}</span>
+                  <button
+                    className="step-btn"
+                    onClick={() => changeExtra(ing.id, 1)}
+                    disabled={remaining === 0 || chosen >= have}
+                  >+</button>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        <div className="cook-actions">
+          <button className="ocr-btn secondary" onClick={onClose}>取消</button>
+          <button className="ocr-btn primary" onClick={handleConfirm}>確認烹飪</button>
+        </div>
+      </div>
+    </div>
+  )
+}
