@@ -19,8 +19,18 @@ function extractQuantities(ocrData) {
     }))
   )
 
-  // 純數字 token
-  const numbers = allWords.filter(w => /^\d+$/.test(w.text))
+  // 數字 token：允許 ×/x 前綴（遊戲 UI 顯示 ×88 形式）
+  const numbers = allWords.filter(w => /^[×xX]?\d+$/.test(w.text))
+
+  // 模糊名稱配對：2+ 個連續字元出現在行文字中即視為符合
+  function nameMatchesLine(lineText, ingName) {
+    if (lineText.includes(ingName)) return true
+    const minLen = ingName.length >= 4 ? 3 : 2
+    for (let i = 0; i <= ingName.length - minLen; i++) {
+      if (lineText.includes(ingName.slice(i, i + minLen))) return true
+    }
+    return false
+  }
 
   const result = {}
 
@@ -35,17 +45,16 @@ function extractQuantities(ocrData) {
 
     for (const ing of ingredientsData) {
       if (ing.id in result) continue
-      if (!lineText.includes(ing.name)) continue
+      if (!nameMatchesLine(lineText, ing.name)) continue
 
-      // 名稱所在行的水平範圍，用來估算同一張卡片的寬度
       const lineWidth = lineRight - lineLeft
-      const cardHalfWidth = Math.max(lineWidth * 0.8, 60)
+      const cardHalfWidth = Math.max(lineWidth * 1.5, 80)
       const lineCenterX = (lineLeft + lineRight) / 2
 
       // 找名稱上方、水平範圍內的數字 token
       const candidates = numbers.filter(n => {
         const numCenterX = n.left + n.width / 2
-        const isAbove = n.top < lineTop + lineHeight * 0.5  // 在名稱上半部以上
+        const isAbove = n.top < lineTop + lineHeight
         const isNearby = Math.abs(numCenterX - lineCenterX) <= cardHalfWidth
         return isAbove && isNearby
       })
@@ -59,8 +68,8 @@ function extractQuantities(ocrData) {
         return da < db ? a : b
       })
 
-      const val = parseInt(best.text, 10)
-      if (!isNaN(val) && val >= 0 && val <= 999) {
+      const val = parseInt(best.text.replace(/[^0-9]/g, ''), 10)
+      if (!isNaN(val) && val > 0 && val <= 999) {
         result[ing.id] = val
       }
     }
