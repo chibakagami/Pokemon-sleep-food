@@ -1,14 +1,16 @@
 import { useState, useRef } from 'react'
 import ingredientsData from '../data/ingredients.json'
 
-const STORAGE_KEY = 'psf_gemini_key'
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent'
+const STORAGE_KEY = 'psf_claude_key'
+const CLAUDE_URL = 'https://api.anthropic.com/v1/messages'
+const MODEL = 'claude-haiku-4-5-20251001'
 
 const ING_MAP_TEXT = ingredientsData.map(i => `${i.id}=${i.name}`).join(', ')
 
 const PROMPT = `這是 Pokémon Sleep 的背包食材截圖。
-請辨識每種食材的數量，回傳 JSON 物件（key 為 id，value 為整數數量）。
+請辨識每種食材的數量，回傳純 JSON 物件（key 為 id，value 為整數數量）。
 只列出截圖中有出現的食材，沒出現的不要列。
+不要加任何說明文字，只回傳 JSON。
 
 食材 id 對照（id=遊戲名稱）：
 ${ING_MAP_TEXT}`
@@ -23,9 +25,10 @@ function toBase64(file) {
 }
 
 function getMimeType(file) {
-  if (file.type && file.type.startsWith('image/')) return file.type
+  const supported = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+  if (file.type && supported.includes(file.type)) return file.type
   const ext = file.name.split('.').pop().toLowerCase()
-  return { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', heic: 'image/heic' }[ext] ?? 'image/jpeg'
+  return { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif' }[ext] ?? 'image/jpeg'
 }
 
 export default function OcrImport({ onApply, onClose }) {
@@ -59,38 +62,40 @@ export default function OcrImport({ onApply, onClose }) {
       const [b64, mimeType] = await Promise.all([toBase64(file), Promise.resolve(getMimeType(file))])
 
       const body = {
-        contents: [{
-          parts: [
-            { inline_data: { mime_type: mimeType, data: b64 } },
-            { text: PROMPT },
+        model: MODEL,
+        max_tokens: 1024,
+        messages: [{
+          role: 'user',
+          content: [
+            { type: 'image', source: { type: 'base64', media_type: mimeType, data: b64 } },
+            { type: 'text', text: PROMPT },
           ],
         }],
-        generationConfig: {
-          responseMimeType: 'application/json',
-        },
       }
 
-      const res = await fetch(`${GEMINI_URL}?key=${apiKey.trim()}`, {
+      const res = await fetch(CLAUDE_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey.trim(),
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-allow-browser': 'true',
+        },
         body: JSON.stringify(body),
       })
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}))
         const msg = err?.error?.message ?? `HTTP ${res.status}`
-        if (res.status === 400 || res.status === 401 || res.status === 403) {
-          const lower = msg.toLowerCase()
-          if (lower.includes('expired')) throw new Error('API Key 已過期，請到 aistudio.google.com 重新申請')
-          if (lower.includes('api key') || lower.includes('invalid') || res.status !== 400) throw new Error('API Key 無效，請確認後重新輸入')
-          throw new Error(`請求格式錯誤：${msg}`)
-        }
-        if (res.status === 429) throw new Error(`請求受限（${msg}），請稍後再試`)
+        if (res.status === 401) throw new Error('API Key 無效，請確認後重新輸入')
+        if (res.status === 400) throw new Error(`請求錯誤：${msg}`)
+        if (res.status === 429) throw new Error('請求過於頻繁，請稍後再試')
+        if (res.status === 529) throw new Error('Claude 服務繁忙，請稍後再試')
         throw new Error(msg)
       }
 
       const data = await res.json()
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? ''
+      const text = data.content?.[0]?.text ?? ''
 
       let parsed
       try {
@@ -131,16 +136,16 @@ export default function OcrImport({ onApply, onClose }) {
     <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
       <div className="modal-box ocr-modal">
         <div className="modal-header">
-          <span className="modal-title">📷 掃描截圖（Gemini）</span>
+          <span className="modal-title">📷 掃描截圖（Claude Vision）</span>
           <button className="modal-close" onClick={onClose}>✕</button>
         </div>
 
         <div className="ocr-key-row">
-          <label className="ocr-key-label">Gemini API Key</label>
+          <label className="ocr-key-label">Anthropic API Key</label>
           <input
             className="ocr-key-input"
             type="password"
-            placeholder="AIza…（免費申請 aistudio.google.com）"
+            placeholder="sk-ant-…（console.anthropic.com）"
             value={apiKey}
             onChange={e => saveKey(e.target.value)}
           />
@@ -159,7 +164,7 @@ export default function OcrImport({ onApply, onClose }) {
         <input
           ref={fileRef}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/gif,image/webp"
           className="hidden-input"
           onChange={handleFile}
         />
