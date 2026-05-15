@@ -3,7 +3,6 @@ import ingredientsData from '../data/ingredients.json'
 import CookModal from './CookModal'
 
 const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
-
 const CATEGORY_ICON = { curry: '🍛', salad: '🥗', dessert: '🍡' }
 const MAX_LEVEL = 65
 
@@ -15,6 +14,7 @@ export default function RecipeCard({
   inStockpile, onToggleStockpile,
 }) {
   const { name, category, ingredients, feasible, sundayOnly, tooBig, ingTotal, potRemain, image, baseEnergy } = recipe
+  const [collapsed, setCollapsed] = useState(true)
   const [recipeImgErr, setRecipeImgErr] = useState(false)
   const [ingImgErrors, setIngImgErrors] = useState({})
   const [showCookModal, setShowCookModal] = useState(false)
@@ -22,7 +22,8 @@ export default function RecipeCard({
   const clamp = v => Math.min(MAX_LEVEL, Math.max(0, v))
   const achieved = target > 0 && level >= target
 
-  const handleCookClick = () => {
+  const handleCookClick = (e) => {
+    e.stopPropagation()
     if (!feasible) return
     if (potRemain > 0) {
       setShowCookModal(true)
@@ -31,22 +32,70 @@ export default function RecipeCard({
     }
   }
 
-  const stockpileEntry = inStockpile
-  const stockpileMeals = stockpileEntry ? (recipe._stockpileMeals ?? 3) : 0
+  const RecipeImage = ({ className }) =>
+    image && !recipeImgErr ? (
+      <img src={image} alt={name} className={className} onError={() => setRecipeImgErr(true)} />
+    ) : (
+      <span className="compact-cat-icon">{CATEGORY_ICON[category]}</span>
+    )
+
+  if (collapsed) {
+    return (
+      <div
+        className={`recipe-card compact-card ${feasible ? 'feasible' : 'infeasible'} ${tooBig ? 'too-big' : ''}`}
+        onClick={() => setCollapsed(false)}
+        role="button"
+        aria-expanded="false"
+      >
+        <div className="compact-img-wrap">
+          {level > 0 && <span className="compact-lv-badge">Lv.{level}</span>}
+          <RecipeImage className="compact-recipe-img" />
+        </div>
+
+        <div className="compact-body">
+          <div className="compact-top-row">
+            <span className="compact-name">{name}</span>
+            <div className="compact-right">
+              {feasible && <span className="compact-feasible-dot" title="可製作" />}
+              {achieved && <span className="compact-achieved-dot" title="已達標" />}
+              {sundayOnly && !tooBig && <span className="compact-badge sunday">🌞</span>}
+              {tooBig && <span className="compact-badge toobig">🚫</span>}
+              {baseEnergy != null && (
+                <span className="compact-energy">▲{baseEnergy.toLocaleString()}</span>
+              )}
+            </div>
+          </div>
+
+          <div className="compact-ings-row">
+            {Object.entries(ingredients).map(([id, req]) => {
+              const ing = ingMap[id]
+              const ok = (inventory[id] ?? 0) >= req
+              return (
+                <span key={id} className={`compact-ing-chip ${ok ? 'ok' : 'lack'}`}>
+                  {ing?.image && !ingImgErrors[id] ? (
+                    <img
+                      src={ing.image}
+                      alt={ing?.name}
+                      className="compact-ing-icon"
+                      onError={() => setIngImgErrors(prev => ({ ...prev, [id]: true }))}
+                    />
+                  ) : (
+                    <span className="compact-ing-emoji">{ing?.emoji}</span>
+                  )}
+                  <span>×{req}</span>
+                </span>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={`recipe-card ${feasible ? 'feasible' : 'infeasible'} ${tooBig ? 'too-big' : ''}`}>
       <div className="recipe-header">
-        {image && !recipeImgErr ? (
-          <img
-            src={image}
-            alt={name}
-            className="recipe-img"
-            onError={() => setRecipeImgErr(true)}
-          />
-        ) : (
-          <span className="recipe-category-icon">{CATEGORY_ICON[category]}</span>
-        )}
+        <RecipeImage className="recipe-img" />
         <div className="recipe-title-block">
           <div className="recipe-name-row">
             <span className="recipe-name">{name}</span>
@@ -92,20 +141,14 @@ export default function RecipeCard({
 
       {!tooBig && potRemain !== undefined && (
         <div className={`pot-remain-tag ${potRemain > 0 ? 'has-room' : 'exact-fit'}`}>
-          {potRemain > 0
-            ? `+${potRemain} 空位可補料`
-            : '恰好填滿鍋子'}
+          {potRemain > 0 ? `+${potRemain} 空位可補料` : '恰好填滿鍋子'}
         </div>
       )}
 
       <div className="recipe-footer">
         <div className="level-row">
           <span className="footer-lbl">Lv.</span>
-          <button
-            className="step-btn"
-            onClick={() => onLevelChange(clamp(level - 1))}
-            aria-label="等級 -1"
-          >−</button>
+          <button className="step-btn" onClick={() => onLevelChange(clamp(level - 1))} aria-label="等級 -1">−</button>
           <input
             className="lv-input"
             type="number"
@@ -114,11 +157,7 @@ export default function RecipeCard({
             value={level}
             onChange={e => onLevelChange(clamp(parseInt(e.target.value) || 0))}
           />
-          <button
-            className="step-btn"
-            onClick={() => onLevelChange(clamp(level + 1))}
-            aria-label="等級 +1"
-          >+</button>
+          <button className="step-btn" onClick={() => onLevelChange(clamp(level + 1))} aria-label="等級 +1">+</button>
           <span className="footer-sep">·</span>
           <span className="footer-lbl">目標</span>
           <input
@@ -136,7 +175,7 @@ export default function RecipeCard({
           <div className="production-actions">
             <button
               className={`stockpile-btn ${inStockpile ? 'in-list' : ''}`}
-              onClick={onToggleStockpile}
+              onClick={e => { e.stopPropagation(); onToggleStockpile() }}
             >
               {inStockpile ? '✓ 囤積中' : '＋囤積'}
             </button>
@@ -146,6 +185,7 @@ export default function RecipeCard({
             >🍳 烹飪</button>
           </div>
         </div>
+        <button className="card-collapse-btn" onClick={() => setCollapsed(true)}>▲ 收合</button>
       </div>
 
       {showCookModal && (

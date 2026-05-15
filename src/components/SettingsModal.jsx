@@ -1,9 +1,10 @@
 import { useState } from 'react'
 
-export default function SettingsModal({ potConfig, ingMax, onSavePot, onSaveIngMax, onClose }) {
+export default function SettingsModal({ potConfig, ingMax, onSavePot, onSaveIngMax, onResetProduction, onClose }) {
   const [weekday, setWeekday] = useState(potConfig.weekday)
   const [sunday, setSunday] = useState(potConfig.sunday)
   const [maxVal, setMaxVal] = useState(ingMax)
+  const [confirmReset, setConfirmReset] = useState(false)
 
   const clampPot = v => Math.max(1, Math.min(200, parseInt(v, 10) || 1))
   const clampMax = v => Math.max(1, Math.min(9999, parseInt(v, 10) || 1))
@@ -11,6 +12,15 @@ export default function SettingsModal({ potConfig, ingMax, onSavePot, onSaveIngM
   const handleSave = () => {
     onSavePot({ weekday: clampPot(weekday), sunday: clampPot(sunday) })
     onSaveIngMax(clampMax(maxVal))
+    onClose()
+  }
+
+  const handleReset = () => {
+    if (!confirmReset) {
+      setConfirmReset(true)
+      return
+    }
+    onResetProduction()
     onClose()
   }
 
@@ -26,25 +36,11 @@ export default function SettingsModal({ potConfig, ingMax, onSavePot, onSaveIngM
         <div className="pot-form">
           <label className="pot-label">
             <span>平日容量</span>
-            <input
-              className="pot-input"
-              type="number"
-              min="1"
-              max="200"
-              value={weekday}
-              onChange={e => setWeekday(e.target.value)}
-            />
+            <input className="pot-input" type="number" min="1" max="200" value={weekday} onChange={e => setWeekday(e.target.value)} />
           </label>
           <label className="pot-label">
             <span>週日容量</span>
-            <input
-              className="pot-input"
-              type="number"
-              min="1"
-              max="200"
-              value={sunday}
-              onChange={e => setSunday(e.target.value)}
-            />
+            <input className="pot-input" type="number" min="1" max="200" value={sunday} onChange={e => setSunday(e.target.value)} />
           </label>
         </div>
 
@@ -52,15 +48,24 @@ export default function SettingsModal({ potConfig, ingMax, onSavePot, onSaveIngM
         <div className="pot-form">
           <label className="pot-label">
             <span>庫存上限顯示</span>
-            <input
-              className="pot-input"
-              type="number"
-              min="1"
-              max="9999"
-              value={maxVal}
-              onChange={e => setMaxVal(e.target.value)}
-            />
+            <input className="pot-input" type="number" min="1" max="9999" value={maxVal} onChange={e => setMaxVal(e.target.value)} />
           </label>
+        </div>
+
+        <div className="settings-section-title">製作紀錄</div>
+        <div className="pot-form">
+          <div className="reset-production-row">
+            <span className="reset-production-hint">
+              {confirmReset ? '⚠️ 再按一次確認重置' : '清除所有料理的製作次數'}
+            </span>
+            <button
+              className={`reset-production-btn ${confirmReset ? 'confirm' : ''}`}
+              onClick={handleReset}
+              onBlur={() => setConfirmReset(false)}
+            >
+              {confirmReset ? '確定重置' : '重置'}
+            </button>
+          </div>
         </div>
 
         <div className="pot-actions">

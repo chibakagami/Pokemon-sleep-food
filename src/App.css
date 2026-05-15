@@ -138,7 +138,8 @@
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 /* ── Header ───────────────────────────────────────── */
@@ -1247,6 +1248,288 @@
   text-align: center;
 }
 
+/* ── Compact recipe card ──────────────────────────── */
+.compact-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  user-select: none;
+  min-height: 64px;
+}
+
+.compact-card:active {
+  opacity: 0.8;
+}
+
+.compact-img-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compact-recipe-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.compact-cat-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.compact-lv-badge {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 5px;
+  line-height: 1.4;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.compact-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.compact-top-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.compact-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compact-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.compact-feasible-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--feasible);
+  flex-shrink: 0;
+}
+
+.compact-achieved-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e8960e;
+  flex-shrink: 0;
+}
+
+.compact-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+.compact-badge.sunday {
+  background: #fff8e1;
+  color: #b7700a;
+}
+
+.compact-badge.toobig {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.compact-energy {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e8960e;
+  white-space: nowrap;
+}
+
+.compact-ings-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.compact-ing-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 6px;
+  background: #f0f0f0;
+}
+
+.compact-ing-chip.ok {
+  color: var(--green-dark);
+  background: #edf7f1;
+}
+
+.compact-ing-chip.lack {
+  color: var(--red-lack);
+  background: #fdecea;
+}
+
+.compact-ing-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.compact-ing-emoji {
+  font-size: 0.75rem;
+}
+
+.card-collapse-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 4px 0 0;
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Gap panel ────────────────────────────────────── */
+.gap-panel {
+  padding: 0 12px 24px;
+}
+
+.gap-all-clear {
+  text-align: center;
+  padding: 48px 0;
+  font-size: 1rem;
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+.gap-section {
+  margin-bottom: 16px;
+}
+
+.gap-section-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-main);
+  padding: 12px 0 6px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.gap-category-block {
+  margin-bottom: 10px;
+}
+
+.gap-category-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 6px 0 4px;
+}
+
+.gap-recipe-row {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+  box-shadow: var(--shadow);
+}
+
+.gap-recipe-name {
+  font-size: 0.87rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+
+.gap-ings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.gap-ing-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.78rem;
+  background: #fdecea;
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+
+.gap-ing-short {
+  font-weight: 700;
+  color: var(--red-lack);
+}
+
+.gap-ing-ratio {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+/* ── Reset production in settings ─────────────────── */
+.reset-production-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.reset-production-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.reset-production-btn {
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.reset-production-btn.confirm {
+  background: #fdecea;
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
 /* ── Stockpile panel ──────────────────────────────── */
 .stockpile-panel {
   margin-bottom: 10px;
@@ -1254,6 +1537,37 @@
   border: 1.5px solid #f0b429;
   background: #fffdf0;
   overflow: hidden;
+}
+
+.stockpile-panel.all-met {
+  border-color: var(--green-dark);
+  background: #f0faf4;
+}
+
+.sp-complete-banner {
+  background: var(--green-dark);
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 8px 12px;
+  letter-spacing: 0.03em;
+  animation: bannerPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes bannerPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.82; }
+}
+
+.sp-count-badge {
+  background: rgba(0,0,0,0.15);
+  color: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
 }
 
 .sp-toggle {
