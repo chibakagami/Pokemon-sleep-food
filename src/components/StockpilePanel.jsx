@@ -12,10 +12,7 @@ function IngBar({ name, required, have }) {
     <div className="sp-ing-row">
       <span className="sp-ing-name">{name}</span>
       <div className="sp-bar-wrap">
-        <div
-          className={`sp-bar-fill ${ok ? 'ok' : 'lacking'}`}
-          style={{ width: `${Math.round(ratio * 100)}%` }}
-        />
+        <div className={`sp-bar-fill ${ok ? 'ok' : 'lacking'}`} style={{ width: `${Math.round(ratio * 100)}%` }} />
       </div>
       <span className={`sp-ing-count ${ok ? 'ok' : 'lacking'}`}>
         {have}/{required}
@@ -31,9 +28,7 @@ export default function StockpilePanel({ stockpileList, setStockpileList, invent
   if (stockpileList.length === 0) return null
 
   const updateMeals = (recipeId, meals) => {
-    setStockpileList(prev =>
-      prev.map(s => s.recipeId === recipeId ? { ...s, meals } : s)
-    )
+    setStockpileList(prev => prev.map(s => s.recipeId === recipeId ? { ...s, meals } : s))
   }
 
   const remove = (recipeId) => {
@@ -43,16 +38,20 @@ export default function StockpilePanel({ stockpileList, setStockpileList, invent
   const allMet = stockpileList.every(({ recipeId, meals }) => {
     const recipe = recipeMap[recipeId]
     if (!recipe) return true
-    return Object.entries(recipe.ingredients).every(([id, req]) => {
-      return (inventory[id] ?? 0) >= req * meals
-    })
+    return Object.entries(recipe.ingredients).every(([id, req]) => (inventory[id] ?? 0) >= req * meals)
   })
 
   return (
-    <div className="stockpile-panel">
+    <div className={`stockpile-panel ${allMet ? 'all-met' : ''}`}>
+      {allMet && (
+        <div className="sp-complete-banner">
+          🎉 本週備料全部完成！
+        </div>
+      )}
+
       <button className="sp-toggle" onClick={() => setExpanded(v => !v)}>
         <span>囤積目標</span>
-        {allMet && <span className="sp-all-met">🎉 本週備料完成！</span>}
+        <span className="sp-count-badge">{stockpileList.length}</span>
         <span className="sp-chevron">{expanded ? '▲' : '▼'}</span>
       </button>
 
@@ -88,12 +87,7 @@ export default function StockpilePanel({ stockpileList, setStockpileList, invent
                   {Object.entries(recipe.ingredients).map(([id, req]) => {
                     const ing = ingMap[id]
                     return (
-                      <IngBar
-                        key={id}
-                        name={ing?.name ?? id}
-                        required={req * meals}
-                        have={inventory[id] ?? 0}
-                      />
+                      <IngBar key={id} name={ing?.name ?? id} required={req * meals} have={inventory[id] ?? 0} />
                     )
                   })}
                 </div>

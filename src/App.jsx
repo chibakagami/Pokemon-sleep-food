@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import IngredientsPanel from './components/IngredientsPanel'
 import RecipeList from './components/RecipeList'
+import GapPanel from './components/GapPanel'
 import SplashScreen from './components/SplashScreen'
 import SettingsModal from './components/SettingsModal'
 import { useStorage } from './hooks/useStorage'
@@ -70,29 +71,27 @@ export default function App() {
       </header>
 
       <nav className="tab-nav">
-        <button
-          className={`tab-btn ${tab === 'recipes' ? 'active' : ''}`}
-          onClick={() => setTab('recipes')}
-        >
+        <button className={`tab-btn ${tab === 'recipes' ? 'active' : ''}`} onClick={() => setTab('recipes')}>
           🍛 料理
         </button>
-        <button
-          className={`tab-btn ${tab === 'ingredients' ? 'active' : ''}`}
-          onClick={() => setTab('ingredients')}
-        >
+        <button className={`tab-btn ${tab === 'ingredients' ? 'active' : ''}`} onClick={() => setTab('ingredients')}>
           🧵 食材
+        </button>
+        <button className={`tab-btn ${tab === 'gap' ? 'active' : ''}`} onClick={() => setTab('gap')}>
+          🔍 缺口
         </button>
       </nav>
 
       <main className="app-main">
-        {tab === 'ingredients' ? (
+        {tab === 'ingredients' && (
           <IngredientsPanel
             inventory={inventory}
             onUpdate={updateIngredient}
             onApplyInventory={applyInventory}
             ingMax={ingMax}
           />
-        ) : (
+        )}
+        {tab === 'recipes' && (
           <RecipeList
             inventory={inventory}
             recipeLevels={recipeLevels}
@@ -108,6 +107,13 @@ export default function App() {
             setStockpileList={setStockpileList}
           />
         )}
+        {tab === 'gap' && (
+          <GapPanel
+            inventory={inventory}
+            potConfig={potConfig}
+            isSunday={isSunday}
+          />
+        )}
       </main>
 
       {showSettings && (
@@ -116,6 +122,7 @@ export default function App() {
           ingMax={ingMax}
           onSavePot={setPotConfig}
           onSaveIngMax={setIngMax}
+          onResetProduction={() => setProductionCounts({})}
           onClose={() => setShowSettings(false)}
         />
       )}
