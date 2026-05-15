@@ -1,34 +1,72 @@
 import { useState, useRef } from 'react'
 import ingredientsData from '../data/ingredients.json'
 
-const STORAGE_KEY = 'psf_claude_key'
-const CLAUDE_URL = 'https://api.anthropic.com/v1/messages'
-const MODEL = 'claude-haiku-4-5-20251001'
+const STORAGE_KEY = 'psf_ocrspace_key'
+const OCRSPACE_URL = 'https://api.ocr.space/parse/image'
 
-const ING_MAP_TEXT = ingredientsData.map(i => `${i.id}=${i.name}`).join(', ')
+// 從 OCR overlay 資料用空間邏輯配對食材名稱與右上方數量
+function extractQuantities(ocrData) {
+  const lines = ocrData.ParsedResults?.[0]?.TextOverlay?.Lines ?? []
 
-const PROMPT = `這是 Pokémon Sleep 的背包食材截圖。
-請辨識每種食材的數量，回傳純 JSON 物件（key 為 id，value 為整數數量）。
-只列出截圖中有出現的食材，沒出現的不要列。
-不要加任何說明文字，只回傳 JSON。
+  // 收集所有文字 token 及位置
+  const allWords = lines.flatMap(line =>
+    (line.Words ?? []).map(w => ({
+      text: (w.WordText ?? '').trim(),
+      left: w.Left ?? 0,
+      top: w.Top ?? 0,
+      width: w.Width ?? 0,
+      height: w.Height ?? 0,
+    }))
+  )
 
-食材 id 對照（id=遊戲名稱）：
-${ING_MAP_TEXT}`
+  // 純數字 token
+  const numbers = allWords.filter(w => /^\d+$/.test(w.text))
 
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(reader.result.split(',')[1])
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
-}
+  const result = {}
 
-function getMimeType(file) {
-  const supported = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
-  if (file.type && supported.includes(file.type)) return file.type
-  const ext = file.name.split('.').pop().toLowerCase()
-  return { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif' }[ext] ?? 'image/jpeg'
+  for (const line of lines) {
+    if (!line.Words?.length) continue
+
+    const lineText = line.Words.map(w => w.WordText ?? '').join('')
+    const lineLeft = Math.min(...line.Words.map(w => w.Left ?? 0))
+    const lineRight = Math.max(...line.Words.map(w => (w.Left ?? 0) + (w.Width ?? 0)))
+    const lineTop = line.MinTop ?? (line.Words[0]?.Top ?? 0)
+    const lineHeight = line.MaxHeight ?? (line.Words[0]?.Height ?? 20)
+
+    for (const ing of ingredientsData) {
+      if (ing.id in result) continue
+      if (!lineText.includes(ing.name)) continue
+
+      // 名稱所在行的水平範圍，用來估算同一張卡片的寬度
+      const lineWidth = lineRight - lineLeft
+      const cardHalfWidth = Math.max(lineWidth * 0.8, 60)
+      const lineCenterX = (lineLeft + lineRight) / 2
+
+      // 找名稱上方、水平範圍內的數字 token
+      const candidates = numbers.filter(n => {
+        const numCenterX = n.left + n.width / 2
+        const isAbove = n.top < lineTop + lineHeight * 0.5  // 在名稱上半部以上
+        const isNearby = Math.abs(numCenterX - lineCenterX) <= cardHalfWidth
+        return isAbove && isNearby
+      })
+
+      if (!candidates.length) continue
+
+      // 選距離名稱右上角最近的數字
+      const best = candidates.reduce((a, b) => {
+        const da = Math.hypot((a.left + a.width) - lineRight, a.top - lineTop)
+        const db = Math.hypot((b.left + b.width) - lineRight, b.top - lineTop)
+        return da < db ? a : b
+      })
+
+      const val = parseInt(best.text, 10)
+      if (!isNaN(val) && val >= 0 && val <= 999) {
+        result[ing.id] = val
+      }
+    }
+  }
+
+  return result
 }
 
 export default function OcrImport({ onApply, onClose }) {
@@ -59,60 +97,23 @@ export default function OcrImport({ onApply, onClose }) {
     setStatus('running')
     setErrorMsg('')
     try {
-      const [b64, mimeType] = await Promise.all([toBase64(file), Promise.resolve(getMimeType(file))])
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('apikey', apiKey.trim())
+      formData.append('language', 'cht')
+      formData.append('isOverlayRequired', 'true')
+      formData.append('scale', 'true')
+      formData.append('OCREngine', '2')
 
-      const body = {
-        model: MODEL,
-        max_tokens: 1024,
-        messages: [{
-          role: 'user',
-          content: [
-            { type: 'image', source: { type: 'base64', media_type: mimeType, data: b64 } },
-            { type: 'text', text: PROMPT },
-          ],
-        }],
-      }
-
-      const res = await fetch(CLAUDE_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey.trim(),
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-allow-browser': 'true',
-        },
-        body: JSON.stringify(body),
-      })
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}))
-        const msg = err?.error?.message ?? `HTTP ${res.status}`
-        if (res.status === 401) throw new Error('API Key 無效，請確認後重新輸入')
-        if (res.status === 400) throw new Error(`請求錯誤：${msg}`)
-        if (res.status === 429) throw new Error('請求過於頻繁，請稍後再試')
-        if (res.status === 529) throw new Error('Claude 服務繁忙，請稍後再試')
-        throw new Error(msg)
-      }
+      const res = await fetch(OCRSPACE_URL, { method: 'POST', body: formData })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
       const data = await res.json()
-      const text = data.content?.[0]?.text ?? ''
-
-      let parsed
-      try {
-        const clean = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim()
-        parsed = JSON.parse(clean)
-      } catch {
-        throw new Error('回傳格式異常，請重試一次')
+      if (data.IsErroredOnProcessing) {
+        throw new Error(data.ErrorMessage?.[0] ?? '辨識失敗')
       }
 
-      const valid = {}
-      ingredientsData.forEach(ing => {
-        const val = parsed[ing.id]
-        if (typeof val === 'number' && val >= 0) {
-          valid[ing.id] = Math.min(999, Math.round(val))
-        }
-      })
-
+      const valid = extractQuantities(data)
       setResults(valid)
       setStatus('done')
     } catch (e) {
@@ -136,16 +137,16 @@ export default function OcrImport({ onApply, onClose }) {
     <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
       <div className="modal-box ocr-modal">
         <div className="modal-header">
-          <span className="modal-title">📷 掃描截圖（Claude Vision）</span>
+          <span className="modal-title">📷 掃描截圖（OCR.space）</span>
           <button className="modal-close" onClick={onClose}>✕</button>
         </div>
 
         <div className="ocr-key-row">
-          <label className="ocr-key-label">Anthropic API Key</label>
+          <label className="ocr-key-label">OCR.space API Key</label>
           <input
             className="ocr-key-input"
             type="password"
-            placeholder="sk-ant-…（console.anthropic.com）"
+            placeholder="K_…（ocr.space 免費申請）"
             value={apiKey}
             onChange={e => saveKey(e.target.value)}
           />
@@ -164,7 +165,7 @@ export default function OcrImport({ onApply, onClose }) {
         <input
           ref={fileRef}
           type="file"
-          accept="image/jpeg,image/png,image/gif,image/webp"
+          accept="image/*"
           className="hidden-input"
           onChange={handleFile}
         />
