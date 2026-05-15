@@ -10,11 +10,10 @@ const CATEGORIES = [
 ]
 
 const SORT_OPTIONS = [
-  { id: 'feasible',    label: '可製作優先' },
-  { id: 'name',        label: '名稱' },
-  { id: 'level',       label: '等級（高→低）' },
-  { id: 'ingredients', label: '食材數量（多→少）' },
-  { id: 'energy',      label: '基礎能量（高→低）' },
+  { id: 'level',       label: '等級' },
+  { id: 'ingredients', label: '食材數量' },
+  { id: 'energy',      label: '基礎能量' },
+  { id: 'feasible',    label: '可製作' },
 ]
 
 function canMake(recipe, inventory) {
@@ -37,7 +36,8 @@ export default function RecipeList({
   stockpileList, setStockpileList,
 }) {
   const [category, setCategory] = useState('curry')
-  const [sortBy, setSortBy] = useState('feasible')
+  const [sortKey, setSortKey] = useState('level')
+  const [sortDir, setSortDir] = useState('desc')
 
   const currentPot = isSunday ? potConfig.sunday : potConfig.weekday
 
@@ -61,25 +61,13 @@ export default function RecipeList({
       }
     })
     .sort((a, b) => {
-      if (sortBy === 'feasible') {
-        if (a.feasible !== b.feasible) return b.feasible - a.feasible
-        return a.name.localeCompare(b.name, 'zh-TW')
-      }
-      if (sortBy === 'level') {
-        if (a.level !== b.level) return b.level - a.level
-        return a.name.localeCompare(b.name, 'zh-TW')
-      }
-      if (sortBy === 'ingredients') {
-        const diff = b.ingTotal - a.ingTotal
-        if (diff !== 0) return diff
-        return a.name.localeCompare(b.name, 'zh-TW')
-      }
-      if (sortBy === 'energy') {
-        const diff = (b.baseEnergy ?? 0) - (a.baseEnergy ?? 0)
-        if (diff !== 0) return diff
-        return a.name.localeCompare(b.name, 'zh-TW')
-      }
-      return a.name.localeCompare(b.name, 'zh-TW')
+      const d = sortDir === 'desc' ? 1 : -1
+      let diff = 0
+      if (sortKey === 'level')       diff = (b.level - a.level) * d
+      else if (sortKey === 'ingredients') diff = (b.ingTotal - a.ingTotal) * d
+      else if (sortKey === 'energy') diff = ((b.baseEnergy ?? 0) - (a.baseEnergy ?? 0)) * d
+      else if (sortKey === 'feasible') diff = (b.feasible - a.feasible) * d
+      return diff !== 0 ? diff : a.name.localeCompare(b.name, 'zh-TW')
     })
 
   const feasibleCount = processed.filter(r => r.feasible).length
@@ -119,13 +107,20 @@ export default function RecipeList({
           </button>
           <select
             className="sort-select"
-            value={sortBy}
-            onChange={e => setSortBy(e.target.value)}
+            value={sortKey}
+            onChange={e => setSortKey(e.target.value)}
           >
             {SORT_OPTIONS.map(opt => (
               <option key={opt.id} value={opt.id}>{opt.label}</option>
             ))}
           </select>
+          <button
+            className="sort-dir-btn"
+            onClick={() => setSortDir(d => d === 'desc' ? 'asc' : 'desc')}
+            title={sortDir === 'desc' ? '多到少' : '少到多'}
+          >
+            {sortDir === 'desc' ? '↓' : '↑'}
+          </button>
         </div>
       </div>
 
