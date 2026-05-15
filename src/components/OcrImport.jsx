@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import ingredientsData from '../data/ingredients.json'
 
 const STORAGE_KEY = 'psf_gemini_key'
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent'
 
 const ING_MAP_TEXT = ingredientsData.map(i => `${i.id}=${i.name}`).join(', ')
 
@@ -94,7 +94,8 @@ export default function OcrImport({ onApply, onClose }) {
 
       let parsed
       try {
-        parsed = JSON.parse(text)
+        const clean = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim()
+        parsed = JSON.parse(clean)
       } catch {
         throw new Error('回傳格式異常，請重試一次')
       }
