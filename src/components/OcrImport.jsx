@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import ingredientsData from '../data/ingredients.json'
 
 const STORAGE_KEY = 'psf_gemini_key'
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent'
 
 const ING_MAP_TEXT = ingredientsData.map(i => `${i.id}=${i.name}`).join(', ')
 
