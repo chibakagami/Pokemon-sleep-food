@@ -420,6 +420,26 @@
   font-family: inherit;
 }
 
+.sort-dir-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.1s;
+}
+
+.sort-dir-btn:active {
+  background: var(--green-light);
+}
+
 .recipes-grid {
   display: flex;
   flex-direction: column;
