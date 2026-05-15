@@ -79,8 +79,12 @@ export default function OcrImport({ onApply, onClose }) {
       if (!res.ok) {
         const err = await res.json().catch(() => ({}))
         const msg = err?.error?.message ?? `HTTP ${res.status}`
-        if (res.status === 400) throw new Error(`請求格式錯誤：${msg}`)
-        if (res.status === 401 || res.status === 403) throw new Error('API Key 無效，請確認後重新輸入')
+        if (res.status === 400 || res.status === 401 || res.status === 403) {
+          const lower = msg.toLowerCase()
+          if (lower.includes('expired')) throw new Error('API Key 已過期，請到 aistudio.google.com 重新申請')
+          if (lower.includes('api key') || lower.includes('invalid') || res.status !== 400) throw new Error('API Key 無效，請確認後重新輸入')
+          throw new Error(`請求格式錯誤：${msg}`)
+        }
         if (res.status === 429) throw new Error(`請求受限（${msg}），請稍後再試`)
         throw new Error(msg)
       }
