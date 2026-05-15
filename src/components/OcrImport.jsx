@@ -1,26 +1,38 @@
 import { useState, useRef } from 'react'
 import ingredientsData from '../data/ingredients.json'
 
-const STORAGE_KEY = 'psf_ocrspace_key'
-const OCRSPACE_URL = 'https://api.ocr.space/parse/image'
+const STORAGE_KEY = 'psf_gemini_key'
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
 
-function parseIngredients(text) {
-  const found = {}
-  ingredientsData.forEach(ing => {
-    const idx = text.indexOf(ing.name)
-    if (idx === -1) return
-    const after = text.slice(idx + ing.name.length, idx + ing.name.length + 12)
-    const match = after.match(/\d+/)
-    if (match) found[ing.id] = Math.max(0, Math.min(999, parseInt(match[0], 10)))
+const ING_MAP_TEXT = ingredientsData.map(i => `${i.id}=${i.name}`).join(', ')
+
+const PROMPT = `這是 Pokémon Sleep 的背包食材截圖。
+請辨識每種食材的數量，回傳 JSON 物件（key 為 id，value 為整數數量）。
+只列出截圖中有出現的食材，沒出現的不要列。
+
+食材 id 對照（id=遊戲名稱）：
+${ING_MAP_TEXT}`
+
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result.split(',')[1])
+    reader.onerror = reject
+    reader.readAsDataURL(file)
   })
-  return found
+}
+
+function getMimeType(file) {
+  if (file.type && file.type.startsWith('image/')) return file.type
+  const ext = file.name.split('.').pop().toLowerCase()
+  return { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', heic: 'image/heic' }[ext] ?? 'image/jpeg'
 }
 
 export default function OcrImport({ onApply, onClose }) {
   const [apiKey, setApiKey] = useState(() => localStorage.getItem(STORAGE_KEY) ?? '')
   const [file, setFile] = useState(null)
   const [preview, setPreview] = useState(null)
-  const [status, setStatus] = useState('idle') // idle | running | done | error
+  const [status, setStatus] = useState('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [results, setResults] = useState({})
   const fileRef = useRef()
@@ -36,8 +48,7 @@ export default function OcrImport({ onApply, onClose }) {
 
   const saveKey = (key) => {
     setApiKey(key)
-    if (key) localStorage.setItem(STORAGE_KEY, key)
-    else localStorage.removeItem(STORAGE_KEY)
+    key ? localStorage.setItem(STORAGE_KEY, key) : localStorage.removeItem(STORAGE_KEY)
   }
 
   const runOcr = async () => {
@@ -45,24 +56,54 @@ export default function OcrImport({ onApply, onClose }) {
     setStatus('running')
     setErrorMsg('')
     try {
-      const formData = new FormData()
-      formData.append('apikey', apiKey.trim())
-      formData.append('file', file)
-      formData.append('language', 'cht')
-      formData.append('isOverlayRequired', 'false')
-      formData.append('OCREngine', '2')
+      const [b64, mimeType] = await Promise.all([toBase64(file), Promise.resolve(getMimeType(file))])
 
-      const res = await fetch(OCRSPACE_URL, { method: 'POST', body: formData })
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-
-      const data = await res.json()
-      if (data.IsErroredOnProcessing) {
-        throw new Error(data.ErrorMessage?.[0] ?? '辨識失敗')
+      const body = {
+        contents: [{
+          parts: [
+            { inline_data: { mime_type: mimeType, data: b64 } },
+            { text: PROMPT },
+          ],
+        }],
+        generationConfig: {
+          responseMimeType: 'application/json',
+        },
       }
 
-      const text = data.ParsedResults?.map(r => r.ParsedText).join('\n') ?? ''
-      const found = parseIngredients(text)
-      setResults(found)
+      const res = await fetch(`${GEMINI_URL}?key=${apiKey.trim()}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        const msg = err?.error?.message ?? `HTTP ${res.status}`
+        if (res.status === 400) throw new Error(`請求格式錯誤：${msg}`)
+        if (res.status === 401 || res.status === 403) throw new Error('API Key 無效，請確認後重新輸入')
+        if (res.status === 429) throw new Error('已達免費額度上限（15次/分鐘），請稍後再試')
+        throw new Error(msg)
+      }
+
+      const data = await res.json()
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? ''
+
+      let parsed
+      try {
+        parsed = JSON.parse(text)
+      } catch {
+        throw new Error('回傳格式異常，請重試一次')
+      }
+
+      const valid = {}
+      ingredientsData.forEach(ing => {
+        const val = parsed[ing.id]
+        if (typeof val === 'number' && val >= 0) {
+          valid[ing.id] = Math.min(999, Math.round(val))
+        }
+      })
+
+      setResults(valid)
       setStatus('done')
     } catch (e) {
       setErrorMsg(e.message ?? '未知錯誤')
@@ -85,16 +126,16 @@ export default function OcrImport({ onApply, onClose }) {
     <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
       <div className="modal-box ocr-modal">
         <div className="modal-header">
-          <span className="modal-title">📷 掃描截圖（OCR.space）</span>
+          <span className="modal-title">📷 掃描截圖（Gemini）</span>
           <button className="modal-close" onClick={onClose}>✕</button>
         </div>
 
         <div className="ocr-key-row">
-          <label className="ocr-key-label">OCR.space API Key</label>
+          <label className="ocr-key-label">Gemini API Key</label>
           <input
             className="ocr-key-input"
             type="password"
-            placeholder="免費申請：ocr.space（存於本機，不會上傳）"
+            placeholder="AIza…（免費申請 aistudio.google.com）"
             value={apiKey}
             onChange={e => saveKey(e.target.value)}
           />
@@ -119,11 +160,7 @@ export default function OcrImport({ onApply, onClose }) {
         />
 
         {status === 'idle' && preview && (
-          <button
-            className="ocr-btn primary"
-            onClick={runOcr}
-            disabled={!apiKey.trim()}
-          >
+          <button className="ocr-btn primary" onClick={runOcr} disabled={!apiKey.trim()}>
             {apiKey.trim() ? '開始辨識' : '請先輸入 API Key'}
           </button>
         )}
@@ -136,7 +173,7 @@ export default function OcrImport({ onApply, onClose }) {
 
         {status === 'error' && (
           <div className="ocr-error-block">
-            <p className="ocr-error">辨識失敗：{errorMsg}</p>
+            <p className="ocr-error">{errorMsg}</p>
             <button className="ocr-btn secondary" onClick={runOcr}>重試</button>
           </div>
         )}
@@ -144,7 +181,7 @@ export default function OcrImport({ onApply, onClose }) {
         {status === 'done' && (
           <>
             <p className="ocr-summary">
-              辨識完成，找到 <strong>{detectedCount}</strong> 種食材，請確認數量後套用。
+              辨識完成，找到 <strong>{detectedCount}</strong> 種食材，確認後套用。
             </p>
             <div className="ocr-results">
               {ingredientsData.map(ing => (
