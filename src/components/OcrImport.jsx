@@ -22,12 +22,16 @@ function extractQuantities(ocrData) {
   // 數字 token：允許 ×/x 前綴（遊戲 UI 顯示 ×88 形式）
   const numbers = allWords.filter(w => /^[×xX]?\d+$/.test(w.text))
 
-  // 模糊名稱配對：2+ 個連續字元出現在行文字中即視為符合
+  // 模糊名稱配對：某行已有其他食材完整名稱時不做模糊；3字名比後2字，4+字名比連續3字
   function nameMatchesLine(lineText, ingName) {
     if (lineText.includes(ingName)) return true
-    const minLen = ingName.length >= 4 ? 3 : 2
-    for (let i = 0; i <= ingName.length - minLen; i++) {
-      if (lineText.includes(ingName.slice(i, i + minLen))) return true
+    if (ingredientsData.some(o => o.name !== ingName && lineText.includes(o.name))) return false
+    if (ingName.length >= 4) {
+      for (let i = 0; i <= ingName.length - 3; i++) {
+        if (lineText.includes(ingName.slice(i, i + 3))) return true
+      }
+    } else if (ingName.length === 3) {
+      return lineText.includes(ingName.slice(1)) // 後2字，避免共用前綴誤配
     }
     return false
   }
