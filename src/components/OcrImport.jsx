@@ -81,7 +81,7 @@ export default function OcrImport({ onApply, onClose }) {
         const msg = err?.error?.message ?? `HTTP ${res.status}`
         if (res.status === 400) throw new Error(`請求格式錯誤：${msg}`)
         if (res.status === 401 || res.status === 403) throw new Error('API Key 無效，請確認後重新輸入')
-        if (res.status === 429) throw new Error('已達免費額度上限（15次/分鐘），請稍後再試')
+        if (res.status === 429) throw new Error(`請求受限（${msg}），請稍後再試`)
         throw new Error(msg)
       }
 
