@@ -4,7 +4,6 @@ import StockpilePanel from './StockpilePanel'
 import recipesData from '../data/recipes.json'
 
 const CATEGORIES = [
-  { id: 'all',     label: '全部' },
   { id: 'curry',   label: '🍛 咖哩・濃湯' },
   { id: 'salad',   label: '🥗 沙拉' },
   { id: 'dessert', label: '🍡 點心・飲品' },
@@ -37,13 +36,13 @@ export default function RecipeList({
   isSunday, setIsSunday,
   stockpileList, setStockpileList,
 }) {
-  const [category, setCategory] = useState('all')
+  const [category, setCategory] = useState('curry')
   const [sortBy, setSortBy] = useState('feasible')
 
   const currentPot = isSunday ? potConfig.sunday : potConfig.weekday
 
   const processed = recipesData
-    .filter(r => category === 'all' || r.category === category)
+    .filter(r => r.category === category)
     .map(r => {
       const total = ingTotal(r)
       const feasible = canMake(r, inventory) && total <= currentPot

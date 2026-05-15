@@ -162,6 +162,32 @@
   flex: 1;
 }
 
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.header-home-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 1rem;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.header-home-btn:active {
+  background: rgba(255,255,255,0.3);
+}
+
 .header-settings-btn {
   padding: 6px 14px;
   border-radius: 20px;
@@ -1369,6 +1395,56 @@
   font-weight: 700;
   color: #e8960e;
   white-space: nowrap;
+}
+
+/* compact level / target row */
+.compact-level-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.compact-lv-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: #f0f0f0;
+  padding: 1px 5px;
+  border-radius: 6px;
+}
+
+.compact-target-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: #fff3e0;
+  padding: 1px 5px;
+  border-radius: 6px;
+}
+
+.compact-target-text.achieved {
+  background: #e8f5e9;
+  color: var(--green-dark);
+}
+
+/* clickable header hint */
+.clickable-header {
+  cursor: pointer;
+  transition: background 0.1s;
+  border-radius: 8px;
+  margin: -4px -4px 4px;
+  padding: 4px;
+}
+
+.clickable-header:active {
+  background: rgba(0,0,0,0.04);
+}
+
+.collapse-hint {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .compact-ings-row {

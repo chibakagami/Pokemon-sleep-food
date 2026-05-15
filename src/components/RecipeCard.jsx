@@ -25,11 +25,8 @@ export default function RecipeCard({
   const handleCookClick = (e) => {
     e.stopPropagation()
     if (!feasible) return
-    if (potRemain > 0) {
-      setShowCookModal(true)
-    } else {
-      onCook({})
-    }
+    if (potRemain > 0) setShowCookModal(true)
+    else onCook({})
   }
 
   const RecipeImage = ({ className }) =>
@@ -66,6 +63,17 @@ export default function RecipeCard({
             </div>
           </div>
 
+          {(level > 0 || target > 0) && (
+            <div className="compact-level-row">
+              <span className="compact-lv-text">Lv.{level}</span>
+              {target > 0 && (
+                <span className={`compact-target-text ${achieved ? 'achieved' : ''}`}>
+                  目標 {target}
+                </span>
+              )}
+            </div>
+          )}
+
           <div className="compact-ings-row">
             {Object.entries(ingredients).map(([id, req]) => {
               const ing = ingMap[id]
@@ -94,7 +102,12 @@ export default function RecipeCard({
 
   return (
     <div className={`recipe-card ${feasible ? 'feasible' : 'infeasible'} ${tooBig ? 'too-big' : ''}`}>
-      <div className="recipe-header">
+      <div
+        className="recipe-header clickable-header"
+        onClick={() => setCollapsed(true)}
+        role="button"
+        aria-label="收合"
+      >
         <RecipeImage className="recipe-img" />
         <div className="recipe-title-block">
           <div className="recipe-name-row">
@@ -110,6 +123,7 @@ export default function RecipeCard({
           {achieved && <span className="achieved-badge">★ 達標</span>}
           {sundayOnly && !tooBig && <span className="sunday-only-badge">🌞 週日</span>}
           {tooBig && <span className="too-big-badge">🚫 鍋子太小</span>}
+          <span className="collapse-hint">▲</span>
         </div>
       </div>
 
@@ -185,7 +199,6 @@ export default function RecipeCard({
             >🍳 烹飪</button>
           </div>
         </div>
-        <button className="card-collapse-btn" onClick={() => setCollapsed(true)}>▲ 收合</button>
       </div>
 
       {showCookModal && (

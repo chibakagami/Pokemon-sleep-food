@@ -64,9 +64,10 @@ export default function App() {
             <h1 className="header-title">料理助手</h1>
             <p className="header-sub">Pokémon Sleep</p>
           </div>
-          <button className="header-settings-btn" onClick={() => setShowSettings(true)}>
-            ⚙️ 設定
-          </button>
+          <div className="header-buttons">
+            <button className="header-home-btn" onClick={() => setStarted(false)}>🏠</button>
+            <button className="header-settings-btn" onClick={() => setShowSettings(true)}>⚙️ 設定</button>
+          </div>
         </div>
       </header>
 
