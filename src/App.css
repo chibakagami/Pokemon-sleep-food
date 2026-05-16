@@ -11,36 +11,25 @@
   user-select: none;
 }
 
-.splash-bg {
+.splash-bg-img {
   position: absolute;
   inset: 0;
-  background: linear-gradient(170deg, #a8d8f0 0%, #6ab8e8 35%, #3a9bd5 70%, #2575c4 100%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   z-index: 0;
 }
 
-.splash-stars {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.star {
-  position: absolute;
-  color: #fff;
-  opacity: 0.7;
-  animation: twinkle 2.5s infinite alternate;
-}
-.star.s1 { top: 8%;  left: 12%; font-size: 1.1rem; animation-delay: 0s; }
-.star.s2 { top: 15%; right: 10%; font-size: 0.8rem; animation-delay: 0.4s; }
-.star.s3 { top: 30%; left: 8%;  font-size: 1.4rem; animation-delay: 0.8s; }
-.star.s4 { top: 20%; right: 20%; font-size: 1rem; animation-delay: 1.2s; }
-.star.s5 { top: 5%;  left: 55%; font-size: 0.9rem; animation-delay: 0.6s; }
-.star.s6 { top: 40%; right: 6%;  font-size: 0.7rem; animation-delay: 1.5s; }
-
-@keyframes twinkle {
-  from { opacity: 0.4; transform: scale(0.9); }
-  to   { opacity: 1;   transform: scale(1.15); }
+.splash-overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  padding-bottom: 60px;
 }
 
 .splash-logo {
@@ -77,28 +66,12 @@
   margin-top: 4px;
 }
 
-.splash-snorlax {
-  position: relative;
-  z-index: 2;
-  width: min(260px, 65vw);
-  filter: drop-shadow(0 12px 32px rgba(0,0,60,0.35));
-  animation: float 3.5s ease-in-out infinite;
-}
-
-.snorlax-svg {
-  width: 100%;
-  height: auto;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
+.splash-logo {
+  margin-bottom: 16px;
 }
 
 .splash-btn {
-  position: relative;
-  z-index: 2;
-  margin-top: 28px;
+  margin-top: 0;
   padding: 14px 48px;
   background: rgba(255,255,255,0.95);
   color: #2575c4;
