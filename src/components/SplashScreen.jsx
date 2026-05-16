@@ -9,8 +9,8 @@ export default function SplashScreen({ onStart }) {
           <div className="logo-sub">料理助手</div>
         </div>
         <button className="splash-btn" onClick={onStart}>點擊來開始</button>
-        <div className="splash-version">V1.03</div>
       </div>
+      <div className="splash-version">V1.04</div>
     </div>
   )
 }

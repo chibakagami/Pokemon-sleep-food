@@ -1,10 +1,24 @@
 import { useState } from 'react'
 import ingredientsData from '../data/ingredients.json'
+import recipesData from '../data/recipes.json'
 
 const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
 
+function buildCategoryMaxReq(category) {
+  const max = {}
+  recipesData
+    .filter(r => r.category === category)
+    .forEach(r => {
+      Object.entries(r.ingredients).forEach(([id, amt]) => {
+        max[id] = Math.max(max[id] ?? 0, amt)
+      })
+    })
+  return max
+}
+
 export default function CookModal({ recipe, inventory, potRemain, onConfirm, onClose }) {
   const [extras, setExtras] = useState({})
+  const categoryMaxReq = buildCategoryMaxReq(recipe.category)
 
   const totalExtras = Object.values(extras).reduce((s, v) => s + v, 0)
   const remaining = potRemain - totalExtras
@@ -59,10 +73,19 @@ export default function CookModal({ recipe, inventory, potRemain, onConfirm, onC
           {ingredientsData.map(ing => {
             const have = inventory[ing.id] ?? 0
             const chosen = extras[ing.id] ?? 0
+            const catMax = categoryMaxReq[ing.id] ?? 0
+            const excess = catMax > 0 ? Math.max(0, have - catMax) : 0
             return (
               <div key={ing.id} className="cook-extra-row">
                 <span className="cook-extra-name">{ing.emoji} {ing.name}</span>
-                <span className="cook-extra-have">庫存 {have}</span>
+                <div className="cook-extra-info">
+                  <span className="cook-extra-have">庫存 {have}</span>
+                  {catMax > 0 && (
+                    <span className={`cook-extra-max ${excess > 0 ? 'has-excess' : ''}`}>
+                      上限 {catMax}{excess > 0 ? `（多 ${excess}）` : ''}
+                    </span>
+                  )}
+                </div>
                 <div className="cook-extra-ctrl">
                   <button
                     className="step-btn"
