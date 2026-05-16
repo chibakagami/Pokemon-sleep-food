@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['icon.png', 'splash.png'],
       manifest: {
         name: 'Pokémon Sleep 料理助手',
         short_name: '料理助手',
@@ -18,11 +18,13 @@ export default defineConfig({
         display: 'standalone',
         lang: 'zh-TW',
         icons: [
-          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }
+          { src: 'icon.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'icon.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'icon.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,json}']
+        globPatterns: ['**/*.{js,css,html,png,json}']
       }
     })
   ]
