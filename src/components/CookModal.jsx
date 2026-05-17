@@ -16,9 +16,22 @@ function buildCategoryMaxReq(category) {
   return max
 }
 
-export default function CookModal({ recipe, inventory, potRemain, onConfirm, onClose }) {
+function buildStockpileMaxReq(stockpileList) {
+  const max = {}
+  stockpileList.forEach(({ recipeId, meals }) => {
+    const r = recipesData.find(r => r.id === recipeId)
+    if (!r) return
+    Object.entries(r.ingredients).forEach(([id, amt]) => {
+      max[id] = Math.max(max[id] ?? 0, amt * meals)
+    })
+  })
+  return max
+}
+
+export default function CookModal({ recipe, inventory, potRemain, stockpileList = [], onConfirm, onClose }) {
   const [extras, setExtras] = useState({})
   const categoryMaxReq = buildCategoryMaxReq(recipe.category)
+  const stockpileMaxReq = buildStockpileMaxReq(stockpileList)
 
   const totalExtras = Object.values(extras).reduce((s, v) => s + v, 0)
   const remaining = potRemain - totalExtras
@@ -74,15 +87,17 @@ export default function CookModal({ recipe, inventory, potRemain, onConfirm, onC
             const have = inventory[ing.id] ?? 0
             const chosen = extras[ing.id] ?? 0
             const catMax = categoryMaxReq[ing.id] ?? 0
-            const excess = catMax > 0 ? Math.max(0, have - catMax) : 0
+            const spMax = stockpileMaxReq[ing.id] ?? 0
+            const limit = Math.max(catMax, spMax)
+            const excess = limit > 0 ? Math.max(0, have - limit) : 0
             return (
               <div key={ing.id} className="cook-extra-row">
                 <span className="cook-extra-name">{ing.emoji} {ing.name}</span>
                 <div className="cook-extra-info">
                   <span className="cook-extra-have">庫存 {have}</span>
-                  {catMax > 0 && (
+                  {limit > 0 && (
                     <span className={`cook-extra-max ${excess > 0 ? 'has-excess' : ''}`}>
-                      上限 {catMax}{excess > 0 ? `（多 ${excess}）` : ''}
+                      上限 {limit}{spMax > catMax ? ' 囤' : ''}{excess > 0 ? `（多 ${excess}）` : ''}
                     </span>
                   )}
                 </div>

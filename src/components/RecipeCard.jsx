@@ -20,6 +20,7 @@ export default function RecipeCard({
   onLevelChange, onTargetChange, onCook,
   currentPot,
   inStockpile, onToggleStockpile,
+  stockpileList,
 }) {
   const { name, category, ingredients, feasible, sundayOnly, tooBig, ingTotal, potRemain, image, baseEnergy } = recipe
   const [collapsed, setCollapsed] = useState(true)
@@ -219,6 +220,7 @@ export default function RecipeCard({
           recipe={recipe}
           inventory={inventory}
           potRemain={potRemain}
+          stockpileList={stockpileList}
           onConfirm={(extras) => onCook(extras)}
           onClose={() => setShowCookModal(false)}
         />

@@ -150,6 +150,7 @@ export default function RecipeList({
             currentPot={currentPot}
             inStockpile={!!stockpileList.find(s => s.recipeId === recipe.id)}
             onToggleStockpile={() => toggleStockpile(recipe.id)}
+            stockpileList={stockpileList}
           />
         ))}
       </div>
