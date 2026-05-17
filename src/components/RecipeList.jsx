@@ -4,9 +4,9 @@ import StockpilePanel from './StockpilePanel'
 import recipesData from '../data/recipes.json'
 
 const CATEGORIES = [
-  { id: 'curry',   label: '🍛 咖哩・濃湯' },
-  { id: 'salad',   label: '🥗 沙拉' },
-  { id: 'dessert', label: '🍡 點心・飲品' },
+  { id: 'curry',   label: '咖哩・濃湯', icon: '/Pokemon-sleep-food/cat-curry.webp' },
+  { id: 'salad',   label: '沙拉',       icon: '/Pokemon-sleep-food/cat-salad.webp' },
+  { id: 'dessert', label: '點心・飲品', icon: '/Pokemon-sleep-food/cat-dessert.webp' },
 ]
 
 const SORT_OPTIONS = [
@@ -89,6 +89,7 @@ export default function RecipeList({
             className={`filter-btn ${category === cat.id ? 'active' : ''}`}
             onClick={() => setCategory(cat.id)}
           >
+            <img src={cat.icon} alt={cat.label} className="cat-icon" />
             {cat.label}
           </button>
         ))}

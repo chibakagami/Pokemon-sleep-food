@@ -4,6 +4,14 @@ import recipesData from '../data/recipes.json'
 
 const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
 
+function IngIcon({ ing }) {
+  const [imgErr, setImgErr] = useState(false)
+  if (ing?.image && !imgErr) {
+    return <img src={ing.image} alt={ing.name} className="cook-ing-icon" onError={() => setImgErr(true)} />
+  }
+  return <span className="cook-ing-emoji">{ing?.emoji}</span>
+}
+
 function buildCategoryMaxReq(category) {
   const max = {}
   recipesData
@@ -70,7 +78,7 @@ export default function CookModal({ recipe, inventory, potRemain, stockpileList 
             const ing = ingMap[id]
             return (
               <div key={id} className="cook-ing-row">
-                <span>{ing?.emoji} {ing?.name}</span>
+                <span className="cook-ing-label"><IngIcon ing={ing} />{ing?.name}</span>
                 <span className="cook-ing-qty">×{req}</span>
               </div>
             )
@@ -92,7 +100,7 @@ export default function CookModal({ recipe, inventory, potRemain, stockpileList 
             const excess = limit > 0 ? Math.max(0, have - limit) : 0
             return (
               <div key={ing.id} className="cook-extra-row">
-                <span className="cook-extra-name">{ing.emoji} {ing.name}</span>
+                <span className="cook-extra-name"><IngIcon ing={ing} />{ing.name}</span>
                 <div className="cook-extra-info">
                   <span className="cook-extra-have">庫存 {have}</span>
                   {limit > 0 && (
