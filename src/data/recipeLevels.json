@@ -1,0 +1,262 @@
+[
+  {
+    "level": 1,
+    "bonusPercent": 0
+  },
+  {
+    "level": 2,
+    "bonusPercent": 2
+  },
+  {
+    "level": 3,
+    "bonusPercent": 4
+  },
+  {
+    "level": 4,
+    "bonusPercent": 6
+  },
+  {
+    "level": 5,
+    "bonusPercent": 8
+  },
+  {
+    "level": 6,
+    "bonusPercent": 9
+  },
+  {
+    "level": 7,
+    "bonusPercent": 11
+  },
+  {
+    "level": 8,
+    "bonusPercent": 13
+  },
+  {
+    "level": 9,
+    "bonusPercent": 16
+  },
+  {
+    "level": 10,
+    "bonusPercent": 18
+  },
+  {
+    "level": 11,
+    "bonusPercent": 19
+  },
+  {
+    "level": 12,
+    "bonusPercent": 21
+  },
+  {
+    "level": 13,
+    "bonusPercent": 23
+  },
+  {
+    "level": 14,
+    "bonusPercent": 24
+  },
+  {
+    "level": 15,
+    "bonusPercent": 26
+  },
+  {
+    "level": 16,
+    "bonusPercent": 28
+  },
+  {
+    "level": 17,
+    "bonusPercent": 30
+  },
+  {
+    "level": 18,
+    "bonusPercent": 31
+  },
+  {
+    "level": 19,
+    "bonusPercent": 33
+  },
+  {
+    "level": 20,
+    "bonusPercent": 35
+  },
+  {
+    "level": 21,
+    "bonusPercent": 37
+  },
+  {
+    "level": 22,
+    "bonusPercent": 40
+  },
+  {
+    "level": 23,
+    "bonusPercent": 42
+  },
+  {
+    "level": 24,
+    "bonusPercent": 45
+  },
+  {
+    "level": 25,
+    "bonusPercent": 47
+  },
+  {
+    "level": 26,
+    "bonusPercent": 50
+  },
+  {
+    "level": 27,
+    "bonusPercent": 52
+  },
+  {
+    "level": 28,
+    "bonusPercent": 55
+  },
+  {
+    "level": 29,
+    "bonusPercent": 58
+  },
+  {
+    "level": 30,
+    "bonusPercent": 61
+  },
+  {
+    "level": 31,
+    "bonusPercent": 64
+  },
+  {
+    "level": 32,
+    "bonusPercent": 67
+  },
+  {
+    "level": 33,
+    "bonusPercent": 70
+  },
+  {
+    "level": 34,
+    "bonusPercent": 74
+  },
+  {
+    "level": 35,
+    "bonusPercent": 77
+  },
+  {
+    "level": 36,
+    "bonusPercent": 81
+  },
+  {
+    "level": 37,
+    "bonusPercent": 84
+  },
+  {
+    "level": 38,
+    "bonusPercent": 88
+  },
+  {
+    "level": 39,
+    "bonusPercent": 92
+  },
+  {
+    "level": 40,
+    "bonusPercent": 96
+  },
+  {
+    "level": 41,
+    "bonusPercent": 100
+  },
+  {
+    "level": 42,
+    "bonusPercent": 104
+  },
+  {
+    "level": 43,
+    "bonusPercent": 108
+  },
+  {
+    "level": 44,
+    "bonusPercent": 113
+  },
+  {
+    "level": 45,
+    "bonusPercent": 117
+  },
+  {
+    "level": 46,
+    "bonusPercent": 122
+  },
+  {
+    "level": 47,
+    "bonusPercent": 127
+  },
+  {
+    "level": 48,
+    "bonusPercent": 132
+  },
+  {
+    "level": 49,
+    "bonusPercent": 137
+  },
+  {
+    "level": 50,
+    "bonusPercent": 142
+  },
+  {
+    "level": 51,
+    "bonusPercent": 148
+  },
+  {
+    "level": 52,
+    "bonusPercent": 153
+  },
+  {
+    "level": 53,
+    "bonusPercent": 159
+  },
+  {
+    "level": 54,
+    "bonusPercent": 165
+  },
+  {
+    "level": 55,
+    "bonusPercent": 171
+  },
+  {
+    "level": 56,
+    "bonusPercent": 177
+  },
+  {
+    "level": 57,
+    "bonusPercent": 183
+  },
+  {
+    "level": 58,
+    "bonusPercent": 190
+  },
+  {
+    "level": 59,
+    "bonusPercent": 197
+  },
+  {
+    "level": 60,
+    "bonusPercent": 203
+  },
+  {
+    "level": 61,
+    "bonusPercent": 209
+  },
+  {
+    "level": 62,
+    "bonusPercent": 215
+  },
+  {
+    "level": 63,
+    "bonusPercent": 221
+  },
+  {
+    "level": 64,
+    "bonusPercent": 227
+  },
+  {
+    "level": 65,
+    "bonusPercent": 234
+  }
+]

@@ -1,10 +1,12 @@
 [
   {
     "id": "mild_honey_curry",
-    "name": "寶貝甜蜜咖哩",
+    "name": "寶寶甜蜜咖哩",
     "category": "curry",
     "baseEnergy": 748,
-    "ingredients": { "honey": 7 },
+    "ingredients": {
+      "honey": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/mildhoneycurry.png"
   },
   {
@@ -12,7 +14,9 @@
     "name": "單純白醬濃湯",
     "category": "curry",
     "baseEnergy": 814,
-    "ingredients": { "milk": 7 },
+    "ingredients": {
+      "milk": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/simplechowder.png"
   },
   {
@@ -20,7 +24,9 @@
     "name": "特選蘋果咖哩",
     "category": "curry",
     "baseEnergy": 839,
-    "ingredients": { "apple": 7 },
+    "ingredients": {
+      "apple": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/fancyapplecurry.png"
   },
   {
@@ -28,7 +34,9 @@
     "name": "豆製肉排咖哩",
     "category": "curry",
     "baseEnergy": 856,
-    "ingredients": { "sausage": 7 },
+    "ingredients": {
+      "sausage": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/beanburgercurry.png"
   },
   {
@@ -36,7 +44,10 @@
     "name": "太陽之力番茄咖哩",
     "category": "curry",
     "baseEnergy": 1910,
-    "ingredients": { "tomato": 10, "herb": 5 },
+    "ingredients": {
+      "tomato": 10,
+      "herb": 5
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/solarpowertomatocurry.png"
   },
   {
@@ -44,7 +55,10 @@
     "name": "入口即化蛋捲咖哩",
     "category": "curry",
     "baseEnergy": 1942,
-    "ingredients": { "egg": 10, "tomato": 6 },
+    "ingredients": {
+      "egg": 10,
+      "tomato": 6
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/meltyomelettecurry.png"
   },
   {
@@ -52,7 +66,10 @@
     "name": "日照炸肉排咖哩",
     "category": "curry",
     "baseEnergy": 2078,
-    "ingredients": { "sausage": 10, "oil": 5 },
+    "ingredients": {
+      "sausage": 10,
+      "oil": 5
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/droughtkatsucurry.png"
   },
   {
@@ -60,7 +77,10 @@
     "name": "吃飽飽起司肉排咖哩",
     "category": "curry",
     "baseEnergy": 2150,
-    "ingredients": { "milk": 8, "sausage": 8 },
+    "ingredients": {
+      "milk": 8,
+      "sausage": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/heartycheeseburgercurry.png"
   },
   {
@@ -68,7 +88,11 @@
     "name": "窩心白醬濃湯",
     "category": "curry",
     "baseEnergy": 3181,
-    "ingredients": { "milk": 10, "potato": 8, "mushroom": 4 },
+    "ingredients": {
+      "milk": 10,
+      "potato": 8,
+      "mushroom": 4
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/softpotatochowder.png"
   },
   {
@@ -76,7 +100,10 @@
     "name": "蘑菇孢子咖哩",
     "category": "curry",
     "baseEnergy": 3372,
-    "ingredients": { "mushroom": 14, "potato": 9 },
+    "ingredients": {
+      "mushroom": 14,
+      "potato": 9
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/sporemushroomcurry.png"
   },
   {
@@ -84,7 +111,11 @@
     "name": "辣味蔥勁十足咖哩",
     "category": "curry",
     "baseEnergy": 4162,
-    "ingredients": { "leek": 14, "ginger": 10, "herb": 8 },
+    "ingredients": {
+      "leek": 14,
+      "ginger": 10,
+      "herb": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/spicyleekcurry.png"
   },
   {
@@ -92,7 +123,12 @@
     "name": "親子愛咖哩",
     "category": "curry",
     "baseEnergy": 4523,
-    "ingredients": { "honey": 12, "apple": 11, "egg": 8, "potato": 4 },
+    "ingredients": {
+      "honey": 12,
+      "apple": 11,
+      "egg": 8,
+      "potato": 4
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/eggbombcurry.png"
   },
   {
@@ -100,7 +136,12 @@
     "name": "絕對睡眠奶油咖哩",
     "category": "curry",
     "baseEnergy": 4670,
-    "ingredients": { "potato": 18, "tomato": 15, "cacao": 12, "milk": 10 },
+    "ingredients": {
+      "potato": 18,
+      "tomato": 15,
+      "cacao": 12,
+      "milk": 10
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/dreameaterbuttercurry.png"
   },
   {
@@ -108,7 +149,11 @@
     "name": "柔軟玉米濃湯",
     "category": "curry",
     "baseEnergy": 5702,
-    "ingredients": { "corn": 14, "milk": 8, "potato": 8 },
+    "ingredients": {
+      "corn": 14,
+      "milk": 8,
+      "potato": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/limbercornstew.png"
   },
   {
@@ -116,7 +161,12 @@
     "name": "健美豆子咖哩",
     "category": "curry",
     "baseEnergy": 5900,
-    "ingredients": { "soybean": 12, "sausage": 6, "herb": 4, "egg": 4 },
+    "ingredients": {
+      "soybean": 12,
+      "sausage": 6,
+      "herb": 4,
+      "egg": 4
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/bulkupbeancurry.png"
   },
   {
@@ -124,7 +174,10 @@
     "name": "炙燒尾肉咖哩",
     "category": "curry",
     "baseEnergy": 7483,
-    "ingredients": { "tail": 8, "herb": 25 },
+    "ingredients": {
+      "tail": 8,
+      "herb": 25
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/grilledtailcurry.png"
   },
   {
@@ -132,23 +185,37 @@
     "name": "忍者咖哩",
     "category": "curry",
     "baseEnergy": 9010,
-    "ingredients": { "soybean": 24, "sausage": 9, "leek": 12, "mushroom": 5 },
+    "ingredients": {
+      "soybean": 24,
+      "sausage": 9,
+      "leek": 12,
+      "mushroom": 5
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/ninjacurry.png"
   },
   {
     "id": "dizzy_punch_curry",
-    "name": "迷你拳辣味咖哩",
+    "name": "迷昏拳辣味咖哩",
     "category": "curry",
     "baseEnergy": 9445,
-    "ingredients": { "coffee": 11, "herb": 11, "honey": 11 },
+    "ingredients": {
+      "coffee": 11,
+      "herb": 11,
+      "honey": 11
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/dizzypunchspicycurry.png"
   },
   {
     "id": "inferno_corn_curry",
-    "name": "煤狐玉米乾咖哩",
+    "name": "煉獄玉米乾咖哩",
     "category": "curry",
     "baseEnergy": 13690,
-    "ingredients": { "herb": 27, "sausage": 24, "corn": 14, "ginger": 12 },
+    "ingredients": {
+      "herb": 27,
+      "sausage": 24,
+      "corn": 14,
+      "ginger": 12
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/infernocornkeemacurry.png"
   },
   {
@@ -156,7 +223,12 @@
     "name": "居合斬壽喜燒咖哩",
     "category": "curry",
     "baseEnergy": 15621,
-    "ingredients": { "leek": 27, "sausage": 26, "honey": 26, "egg": 22 },
+    "ingredients": {
+      "leek": 27,
+      "sausage": 26,
+      "honey": 26,
+      "egg": 22
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/cutsukiyakicurry.png"
   },
   {
@@ -164,7 +236,12 @@
     "name": "覺醒力量濃湯",
     "category": "curry",
     "baseEnergy": 19081,
-    "ingredients": { "soybean": 28, "tomato": 25, "mushroom": 23, "coffee": 16 },
+    "ingredients": {
+      "soybean": 28,
+      "tomato": 25,
+      "mushroom": 23,
+      "coffee": 16
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/hiddenpowerperkupstew.png"
   },
   {
@@ -172,7 +249,12 @@
     "name": "扮演南瓜精濃湯",
     "category": "curry",
     "baseEnergy": 20655,
-    "ingredients": { "pumpkin": 10, "sausage": 16, "potato": 18, "mushroom": 25 },
+    "ingredients": {
+      "pumpkin": 10,
+      "sausage": 16,
+      "potato": 18,
+      "mushroom": 25
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/roleplaypumpkaboostew.png"
   },
   {
@@ -180,7 +262,12 @@
     "name": "茂盛焗烤酪梨",
     "category": "curry",
     "baseEnergy": 24802,
-    "ingredients": { "avocado": 22, "potato": 20, "milk": 41, "oil": 32 },
+    "ingredients": {
+      "avocado": 22,
+      "potato": 20,
+      "milk": 41,
+      "oil": 32
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Curry/overgrowavocadogratin.png"
   },
   {
@@ -188,7 +275,9 @@
     "name": "特選蘋果沙拉",
     "category": "salad",
     "baseEnergy": 855,
-    "ingredients": { "apple": 8 },
+    "ingredients": {
+      "apple": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/fancyapplesalad.png"
   },
   {
@@ -196,7 +285,9 @@
     "name": "好眠番茄沙拉",
     "category": "salad",
     "baseEnergy": 978,
-    "ingredients": { "tomato": 8 },
+    "ingredients": {
+      "tomato": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/snoozytomatosalad.png"
   },
   {
@@ -204,7 +295,9 @@
     "name": "豆製火腿沙拉",
     "category": "salad",
     "baseEnergy": 1045,
-    "ingredients": { "sausage": 8 },
+    "ingredients": {
+      "sausage": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/beanhamsalad.png"
   },
   {
@@ -212,7 +305,10 @@
     "name": "濕潤豆腐沙拉",
     "category": "salad",
     "baseEnergy": 1898,
-    "ingredients": { "soybean": 10, "tomato": 6 },
+    "ingredients": {
+      "soybean": 10,
+      "tomato": 6
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/waterveiltofusalad.png"
   },
   {
@@ -220,7 +316,10 @@
     "name": "免疫蔥花沙拉",
     "category": "salad",
     "baseEnergy": 2114,
-    "ingredients": { "leek": 10, "ginger": 5 },
+    "ingredients": {
+      "leek": 10,
+      "ginger": 5
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/immunityleeksalad.png"
   },
   {
@@ -228,7 +327,11 @@
     "name": "蘑菇孢子沙拉",
     "category": "salad",
     "baseEnergy": 2655,
-    "ingredients": { "mushroom": 17, "tomato": 8, "oil": 8 },
+    "ingredients": {
+      "mushroom": 17,
+      "tomato": 8,
+      "oil": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/sporemushroomsalad.png"
   },
   {
@@ -236,15 +339,23 @@
     "name": "撥雪凱撒沙拉",
     "category": "salad",
     "baseEnergy": 2785,
-    "ingredients": { "milk": 10, "sausage": 6 },
+    "ingredients": {
+      "milk": 10,
+      "sausage": 6
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/snowcloakcaesarsalad.png"
   },
   {
     "id": "gluttony_potato_salad",
-    "name": "食吃鬼洋芋沙拉",
+    "name": "貪吃鬼洋芋沙拉",
     "category": "salad",
     "baseEnergy": 2845,
-    "ingredients": { "potato": 14, "egg": 9, "sausage": 7, "apple": 6 },
+    "ingredients": {
+      "potato": 14,
+      "egg": 9,
+      "sausage": 7,
+      "apple": 6
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/gluttonypotatosalad.png"
   },
   {
@@ -252,7 +363,12 @@
     "name": "蠻力豪邁沙拉",
     "category": "salad",
     "baseEnergy": 2942,
-    "ingredients": { "sausage": 9, "ginger": 6, "egg": 5, "potato": 3 },
+    "ingredients": {
+      "sausage": 9,
+      "ginger": 6,
+      "egg": 5,
+      "potato": 3
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/superpowerextremesalad.png"
   },
   {
@@ -260,7 +376,11 @@
     "name": "哞哞起司番茄沙拉",
     "category": "salad",
     "baseEnergy": 3046,
-    "ingredients": { "milk": 12, "tomato": 6, "oil": 5 },
+    "ingredients": {
+      "milk": 12,
+      "tomato": 6,
+      "oil": 5
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/moomoocapresesalad.png"
   },
   {
@@ -268,7 +388,10 @@
     "name": "心情不定肉沙拉淋巧克力醬",
     "category": "salad",
     "baseEnergy": 3113,
-    "ingredients": { "cacao": 14, "sausage": 9 },
+    "ingredients": {
+      "cacao": 14,
+      "sausage": 9
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/contrarychocolatemeatsalad.png"
   },
   {
@@ -276,7 +399,11 @@
     "name": "過熱沙拉",
     "category": "salad",
     "baseEnergy": 3665,
-    "ingredients": { "herb": 17, "ginger": 10, "tomato": 8 },
+    "ingredients": {
+      "herb": 17,
+      "ginger": 10,
+      "tomato": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/overheatgingersalad.png"
   },
   {
@@ -284,7 +411,11 @@
     "name": "迷人蘋果起司沙拉",
     "category": "salad",
     "baseEnergy": 5040,
-    "ingredients": { "apple": 15, "milk": 5, "oil": 3 },
+    "ingredients": {
+      "apple": 15,
+      "milk": 5,
+      "oil": 3
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/dazzlingapplecheesesalad.png"
   },
   {
@@ -292,7 +423,12 @@
     "name": "忍者沙拉",
     "category": "salad",
     "baseEnergy": 5225,
-    "ingredients": { "leek": 15, "soybean": 19, "mushroom": 12, "ginger": 11 },
+    "ingredients": {
+      "leek": 15,
+      "soybean": 19,
+      "mushroom": 12,
+      "ginger": 11
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/ninjasalad.png"
   },
   {
@@ -300,7 +436,10 @@
     "name": "熱風豆腐沙拉",
     "category": "salad",
     "baseEnergy": 5859,
-    "ingredients": { "soybean": 10, "herb": 6 },
+    "ingredients": {
+      "soybean": 10,
+      "herb": 6
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/heatwavetofusalad.png"
   },
   {
@@ -308,7 +447,11 @@
     "name": "呆呆獸尾巴的胡椒沙拉",
     "category": "salad",
     "baseEnergy": 7125,
-    "ingredients": { "tail": 10, "herb": 10, "oil": 15 },
+    "ingredients": {
+      "tail": 10,
+      "herb": 10,
+      "oil": 15
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/slowpoketailpeppersalad.png"
   },
   {
@@ -316,7 +459,11 @@
     "name": "冥想香甜沙拉",
     "category": "salad",
     "baseEnergy": 7675,
-    "ingredients": { "apple": 21, "honey": 16, "corn": 12 },
+    "ingredients": {
+      "apple": 21,
+      "honey": 16,
+      "corn": 12
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/calmmindfruitsalad.png"
   },
   {
@@ -324,7 +471,10 @@
     "name": "亂擊玉米沙拉",
     "category": "salad",
     "baseEnergy": 8169,
-    "ingredients": { "corn": 9, "oil": 8 },
+    "ingredients": {
+      "corn": 9,
+      "oil": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/furyattackcornsalad.png"
   },
   {
@@ -332,15 +482,25 @@
     "name": "十字切碎丁沙拉",
     "category": "salad",
     "baseEnergy": 8755,
-    "ingredients": { "egg": 20, "sausage": 15, "corn": 11, "tomato": 10 },
+    "ingredients": {
+      "egg": 20,
+      "sausage": 15,
+      "corn": 11,
+      "tomato": 10
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/crosschopsalad.png"
   },
   {
     "id": "coffee_salad",
-    "name": "不服輸咖哩沙拉",
+    "name": "不服輸咖啡沙拉",
     "category": "salad",
     "baseEnergy": 11393,
-    "ingredients": { "coffee": 28, "sausage": 28, "oil": 22, "potato": 22 },
+    "ingredients": {
+      "coffee": 28,
+      "sausage": 28,
+      "oil": 22,
+      "potato": 22
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/defiantcoffeedressedsalad.png"
   },
   {
@@ -348,7 +508,12 @@
     "name": "落英繽紛含羞草蛋沙拉",
     "category": "salad",
     "baseEnergy": 11611,
-    "ingredients": { "egg": 25, "oil": 17, "potato": 15, "sausage": 12 },
+    "ingredients": {
+      "egg": 25,
+      "oil": 17,
+      "potato": 15,
+      "sausage": 12
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/petalblizzardlayeredsalad.png"
   },
   {
@@ -356,7 +521,12 @@
     "name": "蘋果酸優格沙拉",
     "category": "salad",
     "baseEnergy": 11659,
-    "ingredients": { "egg": 35, "apple": 28, "tomato": 23, "milk": 18 },
+    "ingredients": {
+      "egg": 35,
+      "apple": 28,
+      "tomato": 23,
+      "milk": 18
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/appleacidyogurtdressedsalad.png"
   },
   {
@@ -364,15 +534,24 @@
     "name": "碎裂酪梨沙拉",
     "category": "salad",
     "baseEnergy": 19293,
-    "ingredients": { "avocado": 14, "soybean": 18, "oil": 10 },
+    "ingredients": {
+      "avocado": 14,
+      "soybean": 18,
+      "oil": 10
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/lusciousavocadosalad.png"
   },
   {
     "id": "avocado_taco",
-    "name": "重踏酪梨圓脆片",
+    "name": "重踏酪梨醬脆片",
     "category": "salad",
     "baseEnergy": 20218,
-    "ingredients": { "avocado": 28, "corn": 25, "herb": 30, "soybean": 22 },
+    "ingredients": {
+      "avocado": 28,
+      "corn": 25,
+      "herb": 30,
+      "soybean": 22
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/bulldozeguacamoleandchips.png"
   },
   {
@@ -380,7 +559,12 @@
     "name": "大塊滿滿熱水沙拉",
     "category": "salad",
     "baseEnergy": 24356,
-    "ingredients": { "pumpkin": 20, "potato": 30, "corn": 18, "mushroom": 27 },
+    "ingredients": {
+      "pumpkin": 20,
+      "potato": 30,
+      "corn": 18,
+      "mushroom": 27
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/scaldchunkysalad.png"
   },
   {
@@ -388,7 +572,12 @@
     "name": "萌綠沙拉",
     "category": "salad",
     "baseEnergy": 25162,
-    "ingredients": { "oil": 22, "corn": 17, "tomato": 14, "potato": 9 },
+    "ingredients": {
+      "oil": 22,
+      "corn": 17,
+      "tomato": 14,
+      "potato": 9
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Salad/greengrasssalad.png"
   },
   {
@@ -396,7 +585,9 @@
     "name": "哞哞熱鮮奶",
     "category": "dessert",
     "baseEnergy": 814,
-    "ingredients": { "milk": 7 },
+    "ingredients": {
+      "milk": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/warmmoomoomilk.png"
   },
   {
@@ -404,7 +595,9 @@
     "name": "特選蘋果汁",
     "category": "dessert",
     "baseEnergy": 855,
-    "ingredients": { "apple": 8 },
+    "ingredients": {
+      "apple": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/fancyapplejuice.png"
   },
   {
@@ -412,7 +605,9 @@
     "name": "手製勁爽汽水",
     "category": "dessert",
     "baseEnergy": 1079,
-    "ingredients": { "honey": 9 },
+    "ingredients": {
+      "honey": 9
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/craftsodapop.png"
   },
   {
@@ -420,15 +615,21 @@
     "name": "熟成甜薯燒",
     "category": "dessert",
     "baseEnergy": 1748,
-    "ingredients": { "potato": 9, "milk": 5 },
+    "ingredients": {
+      "potato": 9,
+      "milk": 5
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/fluffysweetpotatoes.png"
   },
   {
     "id": "ember_ginger_tea",
-    "name": "火花蔥茶",
+    "name": "火花薑茶",
     "category": "dessert",
     "baseEnergy": 1907,
-    "ingredients": { "ginger": 9, "apple": 7 },
+    "ingredients": {
+      "ginger": 9,
+      "apple": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/embergingertea.png"
   },
   {
@@ -436,7 +637,10 @@
     "name": "祈願蘋果派",
     "category": "dessert",
     "baseEnergy": 1913,
-    "ingredients": { "apple": 12, "milk": 4 },
+    "ingredients": {
+      "apple": 12,
+      "milk": 4
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/luckychantapplepie.png"
   },
   {
@@ -444,7 +648,10 @@
     "name": "我行我素蔬菜汁",
     "category": "dessert",
     "baseEnergy": 1924,
-    "ingredients": { "tomato": 9, "apple": 7 },
+    "ingredients": {
+      "tomato": 9,
+      "apple": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/stalwartvegetablejuice.png"
   },
   {
@@ -452,7 +659,10 @@
     "name": "輕裝豆香蛋糕",
     "category": "dessert",
     "baseEnergy": 2938,
-    "ingredients": { "egg": 8, "soybean": 7 },
+    "ingredients": {
+      "egg": 8,
+      "soybean": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/cloudninesoycake.png"
   },
   {
@@ -460,7 +670,11 @@
     "name": "甜甜香氣巧克力蛋糕",
     "category": "dessert",
     "baseEnergy": 3015,
-    "ingredients": { "honey": 9, "cacao": 8, "milk": 7 },
+    "ingredients": {
+      "honey": 9,
+      "cacao": 8,
+      "milk": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/sweetscentchocolatecake.png"
   },
   {
@@ -468,7 +682,11 @@
     "name": "大馬拉薩達",
     "category": "dessert",
     "baseEnergy": 3263,
-    "ingredients": { "oil": 10, "milk": 7, "honey": 6 },
+    "ingredients": {
+      "oil": 10,
+      "milk": 7,
+      "honey": 6
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/bigmalasada.png"
   },
   {
@@ -476,7 +694,11 @@
     "name": "大力士豆香甜甜圈",
     "category": "dessert",
     "baseEnergy": 3314,
-    "ingredients": { "oil": 9, "soybean": 6, "cacao": 7 },
+    "ingredients": {
+      "oil": 9,
+      "soybean": 6,
+      "cacao": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/hugepowersoydonuts.png"
   },
   {
@@ -484,7 +706,10 @@
     "name": "花瓣舞巧克力塔",
     "category": "dessert",
     "baseEnergy": 3378,
-    "ingredients": { "apple": 11, "ginger": 11 },
+    "ingredients": {
+      "apple": 11,
+      "ginger": 11
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/petaldancechocolatetart.png"
   },
   {
@@ -492,15 +717,23 @@
     "name": "活力蛋白飲",
     "category": "dessert",
     "baseEnergy": 4734,
-    "ingredients": { "soybean": 15, "cacao": 8 },
+    "ingredients": {
+      "soybean": 15,
+      "cacao": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/hustleproteinsmoothie.png"
   },
   {
     "id": "warm_cookie",
-    "name": "不屈鬆餅",
+    "name": "不屈薑餅",
     "category": "dessert",
     "baseEnergy": 4921,
-    "ingredients": { "honey": 14, "ginger": 12, "cacao": 5, "egg": 4 },
+    "ingredients": {
+      "honey": 14,
+      "ginger": 12,
+      "cacao": 5,
+      "egg": 4
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/steadfastgingercookies.png"
   },
   {
@@ -508,7 +741,11 @@
     "name": "橙夢的排毒茶",
     "category": "dessert",
     "baseEnergy": 5065,
-    "ingredients": { "ginger": 11, "apple": 15, "mushroom": 9 },
+    "ingredients": {
+      "ginger": 11,
+      "apple": 15,
+      "mushroom": 9
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/nerolisrestorativetea.png"
   },
   {
@@ -516,7 +753,12 @@
     "name": "惡魔之吻水果牛奶",
     "category": "dessert",
     "baseEnergy": 5547,
-    "ingredients": { "apple": 11, "milk": 9, "honey": 7, "cacao": 8 },
+    "ingredients": {
+      "apple": 11,
+      "milk": 9,
+      "honey": 7,
+      "cacao": 8
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/lovelykisssmoothie.png"
   },
   {
@@ -524,7 +766,11 @@
     "name": "大爆炸爆米花",
     "category": "dessert",
     "baseEnergy": 6048,
-    "ingredients": { "corn": 15, "oil": 14, "milk": 7 },
+    "ingredients": {
+      "corn": 15,
+      "oil": 14,
+      "milk": 7
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/explosionpopcorn.png"
   },
   {
@@ -532,7 +778,12 @@
     "name": "胖丁百匯布丁",
     "category": "dessert",
     "baseEnergy": 6793,
-    "ingredients": { "honey": 20, "egg": 15, "milk": 10, "apple": 10 },
+    "ingredients": {
+      "honey": 20,
+      "egg": 15,
+      "milk": 10,
+      "apple": 10
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/jigglypuffsfruityflan.png"
   },
   {
@@ -540,7 +791,11 @@
     "name": "早起咖啡凍",
     "category": "dessert",
     "baseEnergy": 7125,
-    "ingredients": { "coffee": 16, "milk": 14, "honey": 12 },
+    "ingredients": {
+      "coffee": 16,
+      "milk": 14,
+      "honey": 12
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/earlybirdcoffeejelly.png"
   },
   {
@@ -548,7 +803,11 @@
     "name": "破格玉米香提拉米蘇",
     "category": "dessert",
     "baseEnergy": 7594,
-    "ingredients": { "coffee": 14, "corn": 14, "milk": 12 },
+    "ingredients": {
+      "coffee": 14,
+      "corn": 14,
+      "milk": 12
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/moldbreakercorntiramisu.png"
   },
   {
@@ -556,7 +815,11 @@
     "name": "青草攪拌器冰沙",
     "category": "dessert",
     "baseEnergy": 8165,
-    "ingredients": { "avocado": 18, "tomato": 16, "milk": 14 },
+    "ingredients": {
+      "avocado": 18,
+      "tomato": 16,
+      "milk": 14
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/leaftornadosmoothie.png"
   },
   {
@@ -564,7 +827,12 @@
     "name": "茶會玉米司康",
     "category": "dessert",
     "baseEnergy": 10925,
-    "ingredients": { "apple": 20, "ginger": 20, "corn": 18, "milk": 9 },
+    "ingredients": {
+      "apple": 20,
+      "ginger": 20,
+      "corn": 18,
+      "milk": 9
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/teatimecornscones.png"
   },
   {
@@ -572,7 +840,12 @@
     "name": "電光香料可樂",
     "category": "dessert",
     "baseEnergy": 13834,
-    "ingredients": { "apple": 35, "ginger": 20, "leek": 20, "coffee": 12 },
+    "ingredients": {
+      "apple": 35,
+      "ginger": 20,
+      "leek": 20,
+      "coffee": 12
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/zingzapspicedcola.png"
   },
   {
@@ -580,7 +853,12 @@
     "name": "土王閃電泡芙",
     "category": "dessert",
     "baseEnergy": 17494,
-    "ingredients": { "cacao": 30, "milk": 26, "coffee": 24, "honey": 22 },
+    "ingredients": {
+      "cacao": 30,
+      "milk": 26,
+      "coffee": 24,
+      "honey": 22
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/clodsireeclair.png"
   },
   {
@@ -588,7 +866,12 @@
     "name": "花之禮馬卡龍",
     "category": "dessert",
     "baseEnergy": 20885,
-    "ingredients": { "cacao": 25, "egg": 25, "honey": 17, "milk": 10 },
+    "ingredients": {
+      "cacao": 25,
+      "egg": 25,
+      "honey": 17,
+      "milk": 10
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/flowergiftmacarons.png"
   },
   {
@@ -596,15 +879,25 @@
     "name": "心跳加速鬼面鬆餅",
     "category": "dessert",
     "baseEnergy": 24354,
-    "ingredients": { "pumpkin": 18, "egg": 24, "honey": 32, "tomato": 29 },
+    "ingredients": {
+      "pumpkin": 18,
+      "egg": 24,
+      "honey": 32,
+      "tomato": 29
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/scaryfacepancakes.png"
   },
   {
     "id": "bee_choco_waffle",
-    "name": "探蜜巧克力格子鬆餅",
+    "name": "採蜜巧克力格子鬆餅",
     "category": "dessert",
     "baseEnergy": 25484,
-    "ingredients": { "honey": 38, "corn": 28, "oil": 28, "cacao": 21 },
+    "ingredients": {
+      "honey": 38,
+      "corn": 28,
+      "oil": 28,
+      "cacao": 21
+    },
     "image": "https://raw.githubusercontent.com/catscarlet/pokemon-sleep-recipe-tool/main/public/image/Dessert/honeygatherchocolatewaffles.png"
   }
 ]
