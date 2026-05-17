@@ -1,10 +1,18 @@
 import { useState } from 'react'
 import ingredientsData from '../data/ingredients.json'
+import recipeLevels from '../data/recipeLevels.json'
 import CookModal from './CookModal'
 
 const ingMap = Object.fromEntries(ingredientsData.map(i => [i.id, i]))
+const levelBonusMap = Object.fromEntries(recipeLevels.map(l => [l.level, l.bonusPercent]))
 const CATEGORY_ICON = { curry: '🍛', salad: '🥗', dessert: '🍡' }
 const MAX_LEVEL = 65
+
+function calcEnergy(baseEnergy, level) {
+  if (!baseEnergy) return null
+  const bonus = levelBonusMap[level] ?? 0
+  return Math.round(baseEnergy * (1 + bonus / 100))
+}
 
 export default function RecipeCard({
   recipe, inventory,
@@ -58,7 +66,7 @@ export default function RecipeCard({
               {sundayOnly && !tooBig && <span className="compact-badge sunday">🌞</span>}
               {tooBig && <span className="compact-badge toobig">🚫</span>}
               {baseEnergy != null && (
-                <span className="compact-energy">▲{baseEnergy.toLocaleString()}</span>
+                <span className="compact-energy">▲{calcEnergy(baseEnergy, level || 1).toLocaleString()}</span>
               )}
             </div>
           </div>
@@ -115,7 +123,12 @@ export default function RecipeCard({
             <span className="recipe-total-ing" title="總食材數">×{ingTotal}</span>
           </div>
           {baseEnergy != null && (
-            <span className="recipe-base-energy">基礎能量 {baseEnergy.toLocaleString()}</span>
+            <div className="recipe-energy-block">
+              {level > 1
+                ? <span className="recipe-base-energy">Lv.{level} 能量 <strong>{calcEnergy(baseEnergy, level).toLocaleString()}</strong>　基礎 {baseEnergy.toLocaleString()}</span>
+                : <span className="recipe-base-energy">基礎能量 {baseEnergy.toLocaleString()}</span>
+              }
+            </div>
           )}
         </div>
         <div className="header-badges">
