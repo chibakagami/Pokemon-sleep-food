@@ -73,10 +73,12 @@ export default function App() {
 
       <nav className="tab-nav">
         <button className={`tab-btn ${tab === 'recipes' ? 'active' : ''}`} onClick={() => setTab('recipes')}>
-          🍛 料理
+          <img src="/Pokemon-sleep-food/tab-recipes.png" alt="料理" className="tab-icon" />
+          料理
         </button>
         <button className={`tab-btn ${tab === 'ingredients' ? 'active' : ''}`} onClick={() => setTab('ingredients')}>
-          🧵 食材
+          <img src="/Pokemon-sleep-food/tab-ingredients.webp" alt="食材" className="tab-icon" />
+          食材
         </button>
         <button className={`tab-btn ${tab === 'gap' ? 'active' : ''}`} onClick={() => setTab('gap')}>
           🔍 缺口
